@@ -25,7 +25,7 @@ The install script will run the necessary `git stow` commands to populate the ~/
 
 To uninstall all dotfiles you will have to modify the `install.sh` file.[^2] For every `gnu stow` command inside the file add the -D flag.
 
->![EXAMPLE]
+> [!EXAMPLE]
 > `gnu stow --dotfiles --dir="$HOME/dotfiles" --target="$HOME/.config/" neovim` should become `gnu stow -D --dotfiles --dir="$HOME/dotfiles" --target="$HOME/.config/" neovim`
 
 ## Notes
@@ -35,3 +35,5 @@ I am actually using stow somewhat differently than how it is supposed to be used
 Since the current solution is very weird, I am planning on maybe making a rust application similar to stow, with some improvements so that it better suits my needs.[^1]
 
 [^1]: I imagine the application supporting a flag where the package directory can act like the configuration file itself
+
+[^2]: I could also create a `uninstall.sh` script, however this would require me to always update two files when adding a new package to stow.
