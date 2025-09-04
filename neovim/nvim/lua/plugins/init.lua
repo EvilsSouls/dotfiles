@@ -4,34 +4,7 @@
 return {
   "tpope/vim-surround",
 
-  "neovim/nvim-lspconfig",
-
   "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "bash", "fish", "html", "javascript", "json", "jsonc", "toml", "javascript", "latex", "yaml" },
-    highlight = {
-      enable = true
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm"
-      }
-    },
-    indentation = {
-      enable = true
-    }
-  },
-
-  {
-     "mason-org/mason.nvim",
-     opts = {}
-  },
 
   {
     "folke/tokyonight.nvim",
@@ -55,15 +28,6 @@ return {
           { 'datetime', style = '%H:%M', icon = '' }
         }
       }
-    }
-  },
-
-  {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {},
-    dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
-      "neovim/nvim-lspconfig",
     }
   },
 
