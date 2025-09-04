@@ -1,0 +1,142 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '''
+[](fg:first bg:black)$os[ ](inverted fg:prev_fg bg:prev_bg)$username[](fg:prev_fg bg:second)$hostname[](fg:prev_bg bg:third)$directory[](fg:prev_bg bg:fourth)$git_branch$git_status[](fg:prev_bg bg:black)$fill[](fg:dark_red bg:prev_bg)$status$sudo[](fg:prev_bg bg:light_red)$cmd_duration[](fg:prev_bg bg:lighter_red)$time[](fg:prev_bg bg:black)
+$character
+'''
+palette = 'cyan'
+
+[username]
+style_user = 'inverted fg:prev_fg bg:prev_bg'
+style_root = 'fg:red bg:prev_fg'
+format = '[ $user ]($style)'
+show_always = true
+
+[hostname]
+ssh_only = true
+ssh_symbol = ''
+trim_at = ''
+style = 'fg:black bg:prev_bg'
+format = '[ $hostname $ssh_symbol ]($style)'
+
+[directory]
+read_only = ' '
+read_only_style = 'bg:prev_bg fg:first'
+style = 'fg:black bg:prev_bg'
+home_symbol = '  ~'
+format = '[ $path ]($style)[($read_only)]($read_only_style)'
+
+[git_branch]
+style = 'bg:prev_bg fg:black'
+format = '[ $symbol$branch(:$remote_branch)]($style)'
+
+[git_status]
+format = '([ \[$all_status$ahead_behind\]]($style))'
+conflicted = ''
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+style = 'bg:prev_bg fg:dark_red'
+
+[fill]
+symbol = ' '
+
+[status]
+format = '[$symbol ]($style)'
+map_symbol = true
+symbol = '✘'
+success_symbol = '✓'
+not_executable_symbol = ''
+not_found_symbol = ''
+sigint_symbol = ''
+signal_symbol = ''
+disabled = false
+style = 'bg:dark_red fg:black'
+
+[sudo]
+symbol = ''
+style = 'bg:prev_bg fg:prev_fg'
+disabled = false
+format = '[$symbol ]($style)'
+
+[cmd_duration]
+min_time = 500
+show_milliseconds = true
+format = '[  $duration ]($style)'
+style = 'bg:prev_bg fg:black'
+show_notifications = false
+min_time_to_notify = 20_000
+
+[time]
+format = '[ $time  ]($style)'
+disabled = false
+time_format = '%T'
+style = 'bg:prev_bg fg:black'
+
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+format = '$symbol '
+
+
+
+[palettes.purple]
+first = '#592c78'
+second = '#9043c5'
+third = '#8f64b7'
+fourth = '#c1a1d7'
+
+lighter_red = '#f16a62'
+light_red = '#bf473f'
+rust = '#764025'
+dark_red = '#a92323'
+
+[palettes.cyan]
+first = '#345f72'
+second = '#458cad'
+third = '#6da3be'
+fourth = '#8eaebd'
+
+lighter_red = '#f16a62'
+light_red = '#bf473f'
+dark_red = '#a92323'
+rust = '#764025'
+
+[os]
+disabled = false
+style = 'inverted fg:prev_fg bg:prev_bg'
+
+[os.symbols]
+AlmaLinux = ""
+Alpine = ""
+Android = ""
+Arch = "󰣇"
+Artix = ""
+CentOS = ""
+Debian = ""
+EndeavourOS = ""
+Fedora = ""
+FreeBSD = ""
+Garuda = ""
+Gentoo = "󰣨"
+HardenedBSD = ""
+Kali = ""
+Linux = "󰌽"
+Macos = ""
+Manjaro = ""
+Mint = "󰣭"
+NixOS = ""
+OpenBSD = ""
+openSUSE = ""
+Pop = ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+RockyLinux = ""
+Solus = ""
+SUSE = " "
+Ubuntu = ""
+Unknown = ""
+Void = " "
+Windows = "󰖳"

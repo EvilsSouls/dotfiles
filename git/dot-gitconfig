@@ -1,0 +1,9 @@
+[http]
+	lowSpeedLimit = 1000
+	lowSpeedTime = 60
+	postBuffer = 524288000
+[init]
+	defaultBranch = main
+[user]
+	email = evilssouls@protonmail.com
+	name = evilssouls

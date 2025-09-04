@@ -1,0 +1,7 @@
+# general.import = [ "tokyo-night.toml" ]
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font" }
+
+[env]
+TERM = "xterm-256color"
