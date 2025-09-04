@@ -21,7 +21,7 @@ fzf --fish | source
 alias ls="lsd"
 
 # Alias the vim command to instead use nvim
-alias vim="nvim",
+alias vim="nvim"
 
 set -x THEFUCK_OVERRIDDEN_ALIASES 'ls,vim'
 
