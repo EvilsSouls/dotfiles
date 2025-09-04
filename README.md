@@ -25,8 +25,8 @@ The install script will run the necessary `git stow` commands to populate the ~/
 
 To uninstall all dotfiles you will have to modify the `install.sh` file.[^2] For every `gnu stow` command inside the file add the -D flag.
 
-> [!EXAMPLE]
-> `gnu stow --dotfiles --dir="$HOME/dotfiles" --target="$HOME/.config/" neovim` should become `gnu stow -D --dotfiles --dir="$HOME/dotfiles" --target="$HOME/.config/" neovim`
+> [!NOTE]
+> As an Example `gnu stow --dotfiles --dir="$HOME/dotfiles" --target="$HOME/.config/" neovim` should become `gnu stow -D --dotfiles --dir="$HOME/dotfiles" --target="$HOME/.config/" neovim`.
 
 ## Notes
 
