@@ -8,4 +8,6 @@ stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" fastfetch
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" bat
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" alacritty
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" thefuck
-stow --dotfiles --dir=/home/evilssouls/dotfiles/ --target=/home/evilssouls/.config/ starship
+stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" starship
+stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" locale
+sudo stow --dotfiles --dir="$HOME/dotfiles/" --target="/usr/share/i18n/locales" locales
