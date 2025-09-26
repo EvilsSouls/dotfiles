@@ -20,7 +20,7 @@ git clone https://github.com/EvilsSouls/dotfiles.git ~/dotfiles
 ```
 
 > [!tip]
-> If you only want to use the dotfiles of certain packages, you can insert a `#` at the start of the line containing the to-be-excluded package. This will comment the command out, thus stopping `gnu stow` from symlinking the configuration files. I would recommend commenting out the line which `stow`s the `locale` and `locales` packages, as this is only for my personal localization preference. If you *do* decide to include the `locale` and `locales` packages, don't forget to include the en\_DE file in the `SUPPORTED` file located at `/usr/share/i18n/SUPPORTED`.
+> If you only want to use the dotfiles of certain packages, you can insert a `#` at the start of the line containing the to-be-excluded package. This will comment the command out, thus stopping `gnu stow` from symlinking the configuration files. I would recommend commenting out the line which `stow`s the `locale` and `locales` packages, as this is only for my personal localization preference. If you *do* decide to include the `locale` and `locales` packages, don't forget to include the en\_DE file in the `SUPPORTED` file located at `/usr/share/i18n/SUPPORTED` and adding a line for `en_DE` in the `locale.gen` file located at `/etc/locale.gen`.
 
 The install script will run the necessary `git stow` commands to populate the ~/.config and home directory with the appropriate dotfiles.
 

@@ -105,10 +105,10 @@ grouping        3
 END LC_NUMERIC
 
 LC_TIME
-abday	"Su";"Mo";/
-	"Tu";"We";/
-	"Th";"Fr";/
-	"Sa"
+abday	"Sun";"Mon";/
+	"Tus";"Wed";/
+	"Thu";"Fri";/
+	"Sat"
 day	"Sunday";/
 	"Monday";/
 	"Tuesday";/

@@ -17,14 +17,20 @@ fzf --fish | source
 
 # --- Set all Aliases ---
 
-# Alias the ls command to instead use lsd
-alias ls="lsd"
+# Alias the ls command to instead use eza
+alias ls="eza --hyperlink"
+abbr --add l ls -l
+abbr --add lt ls --tree
+set -gx EZA_ICONS_AUTO
 
 # Alias the vim command to instead use nvim
 alias vim="nvim"
 
 set -x THEFUCK_OVERRIDDEN_ALIASES 'ls,vim'
 
+# Alias Wiki-Tui command to 'wk' for English Wikipedia and 'wkd' for German Wikipedia
+abbr --add wk wiki-tui
+abbr --add wkd wiki-tui -l de
 
 # Set default Editor to Neovim
 set -gx EDITOR nvim
