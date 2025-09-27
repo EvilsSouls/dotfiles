@@ -5,21 +5,10 @@ end
 # Created by `pipx` on 2025-08-02 21:14:22
 set PATH $PATH /home/evilssouls/.local/bin
 
-function echo_commandline
-  set -l current_commandline commandline
-  sleep 1s
-  commandline -r "echo hello world"
-  sleep 1s
-  transient_execute
-  sleep 1s
-  commandline -r "$current_commandline"
-end
-
 # Configure keybindings
 bind --mode insert alt-v fish_clipboard_paste
 bind --mode insert alt-c fish_clipboard_copy
-bind --mode insert ctrl-alt-n echo_commandline
-bind --mode default ctrl-alt-n echo_commandline
+bind ctrl-alt-n echo_commandline
 
 # --- transient prompt ---
 # The fish plugin is used, since starship has some minor quirks in its implementation
