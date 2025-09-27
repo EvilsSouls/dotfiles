@@ -12,19 +12,26 @@ end
 starship init fish | source
 enable_transience
 
-# Set up fzf key bindings
-fzf --fish | source
+# Set up fzf
+# TODO: Eventually change it so that the fzf keybinds also show a preview
+# fzf --fish | source
+abbr --add 'inv' 'nvim $(fzf -m --preview="bat --color=always {}")'
+set -gx FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 
 # --- Set all Aliases ---
 
 # Alias the ls command to instead use eza
-alias ls="eza --hyperlink"
+alias ls='eza --hyperlink --group-directories-first'
 abbr --add l ls -l
 abbr --add lt ls --tree
 set -gx EZA_ICONS_AUTO
 
 # Alias the vim command to instead use nvim
-alias vim="nvim"
+alias vim='nvim'
+
+# Alias the bat command to default to no decoration
+alias bat='bat -p'
 
 set -x THEFUCK_OVERRIDDEN_ALIASES 'ls,vim'
 
