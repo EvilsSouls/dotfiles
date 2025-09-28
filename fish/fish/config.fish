@@ -1,3 +1,5 @@
+# TODO: Add more fzf keybinds, change it so that it can also display images and maybe make the changes all new fish changes its own plugin / fork another one
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -19,8 +21,6 @@ end
 enable_transience
 
 # --- fzf and fzf fish plugins ---
-# TODO: Eventually change it so that the fzf keybinds also show a preview
-#fzf --fish | source
 set -gx FZF_DEFAULT_COMMAND 'fd --max-depth 12 --strip-cwd-prefix --hidden --follow --exclude .git'
 set fzf_diff_highlighter delta --paging=never --width=20
 set fzf_preview_dir_cmd eza --all

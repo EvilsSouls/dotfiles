@@ -8,7 +8,6 @@ abbr -a lt ls --tree
 # --- nvim abbreviations ---
 abbr -a vim nvim # Alias the vim command to instead use nvim
 abbr -a v nvim
-abbr -a 'inv' 'nvim $(fzf -m --ansi --preview="_fzf_preview_file {}")'
 
 # --- bat and bat-extras abbreviations ---
 abbr -a --position anywhere -- --help '--help | bat -plhelp' # Use bat for --help arguments
