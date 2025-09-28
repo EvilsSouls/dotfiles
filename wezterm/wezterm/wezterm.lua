@@ -19,7 +19,7 @@ config.font = wezterm.font_with_fallback {
 }
 config.color_scheme = 'Default Dark (base16)'
 config.inactive_pane_hsb = {
-  saturation = 0.8,
+  saturation = 0.9,
   brightness = 0.8,
 }
 

@@ -36,6 +36,7 @@ set -gx EDITOR nvim # Set default editor to Neovim
 # --- bat and bat-extras ---
 batman --export-env | source
 set -gx BATDIFF_USE_DELTA true
+bat --completion fish | source
 
 # --- thefuck ---
 set -x THEFUCK_OVERRIDDEN_ALIASES 'ls'
