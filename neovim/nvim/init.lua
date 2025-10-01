@@ -3,8 +3,9 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.keymap.set("", "<Space>", "<Nop>")
 vim.g.mapleader = ' '
-
+vim.g.maplocalleader = ' '
 
 -- [[ Setting options ]] See `:h vim.o`
 -- NOTE: You can change these options as you wish!
@@ -18,6 +19,10 @@ vim.o.number = true
 -- Use relative line numbers, so that it is easier to jump with j, k. This will affect the 'number'
 -- option above, see `:h number_relativenumber`
 vim.o.relativenumber = true
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Sync clipboard between OS and Neovim. Schedule the setting after `UiEnter` because it can
 -- increase startup-time. Remove this option if you want your OS clipboard to remain independent.
@@ -110,3 +115,5 @@ vim.cmd[[colorscheme tokyonight-night]]
 
 -- Configurate Rainbow-Delimiters
 require("config.rainbow-delimiters")
+
+require("config.remap")

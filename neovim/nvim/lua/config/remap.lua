@@ -1,6 +1,5 @@
 -- TODO: nohl, CTRL-O replaced with HL, Enter and Shift+Enter = Newline above and below
 vim.keymap.set("", "<leader>nh", ":nohl<CR>")
--- vim.keymap.set("n", "<Enter>", ":call append(line('.'), '')<CR>")
 vim.keymap.set("n", "<Enter>", function() vim.fn.append(vim.fn.line('.'), '') vim.cmd('norm! j') end)
 vim.keymap.set("n", "<S-Enter>", function() vim.fn.append(vim.fn.line('.')-1, '') vim.cmd('norm! k') end)
 
