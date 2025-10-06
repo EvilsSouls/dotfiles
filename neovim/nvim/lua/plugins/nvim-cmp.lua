@@ -20,12 +20,23 @@ return {
       {'chrisgrieser/cmp-nerdfont'},
       {'kdheepak/cmp-latex-symbols', ft = 'markdown'},
       {'nat-418/cmp-color-names.nvim', opts = {}, ft = {'markdown', 'html', 'css'}},
-      {'mtoohey31/cmp-fish', ft = 'fish'}
+      {'mtoohey31/cmp-fish', ft = 'fish'},
+      {'onsails/lspkind.nvim'},
+      {'hrsh7th/cmp-nvim-lsp-signature-help'},
+      {'hrsh7th/cmp-nvim-lsp-document-symbol'},
     },
 
     config = function()
       -- require('cmp-color-names').setup()
       local cmp = require('cmp')
+      local lspkind = require('lspkind')
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+      -- Automatically inserts '(' after selecting function or method
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
 
       cmp.setup({
         -- enabled = function()
@@ -47,38 +58,58 @@ return {
           documentation = cmp.config.window.bordered(),
         },
 
+        experimental = {
+          ghost_text = true
+        },
+
         view = {
           docs = { auto_open = true }
+        },
+
+        completion = {
+          keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+          keyword_length = 2,
         },
 
         performance = {
           max_view_entries = 10
         },
 
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = 'symbol',
+            menu = ({
+              buffer = '[Buffer]',
+              nvim_lsp = '[LSP]',
+              luasnip = '[LuaSnip]',
+              latex_symbols = '[LaTeX]',
+            })
+          }),
+        },
+
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
 
         sources = cmp.config.sources({
           { name = 'lazydev', group_index = 0 },
-          { name = 'nvim-lsp' },
+          { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'async_path' },
-          { name = 'nerdfont' }
-        }, {
-          { name = 'buffer' },
+          { name = 'nvim_lsp_signature_help' },
+          { name = 'nvim_lsp_document_symbol' },
+          { name = 'nerdfont', keyword_length = 3 },
+          { name = 'buffer', keyword_length = 4 },
         }),
       })
 
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
           { name = 'git' },
-        }, {
-          { name = 'buffer' },
+          { name = 'buffer', keyword_length = 4 },
         })
       })
 
@@ -92,8 +123,7 @@ return {
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = 'async_path' }
-        }, {
+          { name = 'async_path' },
           { name = 'cmdline' }
         }),
         matching = { disallow_symbol_nonprefix_matching = false },
@@ -101,33 +131,33 @@ return {
 
       cmp.setup.filetype('fish', {
         sources = cmp.config.sources({
-          { name = 'nvim-lsp' },
+          { name = 'nvim_lsp' },
           { name = 'fish' },
           { name = 'luasnip' },
           { name = 'async_path' },
-          { name = 'nerdfont' }
-        }, {
-          { name = 'buffer' },
+          { name = 'nvim_lsp_signature_help' },
+          { name = 'nvim_lsp_document_symbol' },
+          { name = 'nerdfont', keyword_length = 3 },
+          { name = 'buffer', keyword_length = 4 },
         })
       })
 
       cmp.setup.filetype('markdown', {
         sources = cmp.config.sources({
           { name = 'latex_symbols' },
-          { name = 'color_names' },
+          { name = 'color_names', keyword_length = 3 },
           { name = 'luasnip' }
         })
       })
 
       cmp.setup.filetype({'html', 'css'}, {
         sources = cmp.config.sources({
-          { name = 'nvim-lsp' },
+          { name = 'nvim_lsp' },
           { name = 'async_path' },
           { name = 'color_names' },
           { name = 'luasnip' },
-          { name = 'nerdfont' },
-        }, {
-          { name = 'buffer' }
+          { name = 'nerdfont', keyword_length = 3 },
+          { name = 'buffer', keyword_length = 4 }
         })
       })
     end
