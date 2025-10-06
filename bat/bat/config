@@ -11,7 +11,7 @@
 --italic-text=always
 
 # Set the default style
---style="numbers,changes,header,rule"
+--style="numbers,changes,rule"
 
 # Uncomment the following line to disable automatic paging:
 #--paging=never

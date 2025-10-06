@@ -6,6 +6,8 @@ require 'hyperlink-snippet'
 local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 --require 'modal-wezterm'
 
+config.enable_wayland = true
+
 config.initial_cols = 120
 config.initial_rows = 28
 
@@ -22,6 +24,8 @@ config.inactive_pane_hsb = {
   saturation = 0.9,
   brightness = 0.8,
 }
+--config.window_background_opacity = 0.9
+--config.kde_window_background_blur = true
 
 -- Tab Bar
 config.use_fancy_tab_bar = true

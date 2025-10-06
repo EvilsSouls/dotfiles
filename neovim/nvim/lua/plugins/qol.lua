@@ -67,5 +67,7 @@ return {
         hsl_fn = true,
       }
     }
-  }
+  },
+
+  {'mluders/comfy-line-numbers.nvim', opts = {}}
 }

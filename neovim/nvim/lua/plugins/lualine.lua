@@ -37,10 +37,12 @@ return {
         },
 
         lualine_z = {
-          {'datetime', style = '%H:%M', icon = ''},
-          {require("lazy.status").updates,
+          {
+            require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = { fg = "#ff9e64" }}
+            color = { fg = "#442205" }
+          },
+          {'datetime', style = '%H:%M', icon = ''}
         }
       }
     }
