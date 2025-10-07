@@ -67,7 +67,7 @@ return {
         },
 
         completion = {
-          keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+          keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]], -- default pattern defined by nvim-cmp; /(-?\d+(\.\d+)?|\b\w+(-\w*)*)/g as a JS regex
           keyword_length = 2,
         },
 
@@ -83,6 +83,13 @@ return {
               nvim_lsp = '[LSP]',
               luasnip = '[LuaSnip]',
               latex_symbols = '[LaTeX]',
+              async_path = '[Path]',
+              nerdfont = '[NerdFont]',
+              git = '[Git]',
+              fish = '[Fish]',
+              color_names = '[Colors]',
+              nvim_lsp_signature_help = '[LSP Sig]',
+              nvim_lsp_document_symbol = '[LSP Doc]',
             })
           }),
         },
@@ -145,7 +152,12 @@ return {
       cmp.setup.filetype('markdown', {
         sources = cmp.config.sources({
           { name = 'latex_symbols' },
-          { name = 'color_names', keyword_length = 3 },
+          -- { name = 'color_names', keyword_length = 3, keyword_pattern = [[\\color{]] },
+          -- { name = 'color_names',keyword_length = 0, keyword_pattern = [[\.\w\+]] },
+          -- { name = 'color_names', keyword_length = 0, trigger_characters = {'{'}, keyword_pattern = [[\m\\color{\w*]]},
+          -- { name = 'color_names', trigger_characters = {'#'}, keyword_length = 1},
+          -- { name = 'color_names', keyword_length = 0, keyword_pattern = [[\d\+]] },
+          { name = 'color_names', keyword_length = 0, keyword_pattern = [[red]] },
           { name = 'luasnip' }
         })
       })
