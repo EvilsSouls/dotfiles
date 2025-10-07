@@ -157,7 +157,8 @@ return {
           -- { name = 'color_names', keyword_length = 0, trigger_characters = {'{'}, keyword_pattern = [[\m\\color{\w*]]},
           -- { name = 'color_names', trigger_characters = {'#'}, keyword_length = 1},
           -- { name = 'color_names', keyword_length = 0, keyword_pattern = [[\d\+]] },
-          { name = 'color_names', keyword_length = 0, keyword_pattern = [[red]] },
+          -- { name = 'color_names', keyword_length = 0, keyword_pattern = [[red]] },
+          { name = 'color_names', keyword_length = 0, keyword_pattern = [[\(\\color{\)\@<=\w*]]},
           { name = 'luasnip' }
         })
       })

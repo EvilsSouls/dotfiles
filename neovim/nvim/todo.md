@@ -13,5 +13,6 @@ This is the todo for my neovim configuration.
 
 This is a test of the colors. The default regex that is used (in js notation) is: `/(-?\d+(\.\d+)?|\b\w+(-\w*)*)/g`
 
-This is another test of the colors. \colors{
+This is another test of the colors. \colors{red
 
+\color{LightSkyBlue} orange
