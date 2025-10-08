@@ -151,13 +151,7 @@ return {
 
       cmp.setup.filetype('markdown', {
         sources = cmp.config.sources({
-          { name = 'latex_symbols' },
-          -- { name = 'color_names', keyword_length = 3, keyword_pattern = [[\\color{]] },
-          -- { name = 'color_names',keyword_length = 0, keyword_pattern = [[\.\w\+]] },
-          -- { name = 'color_names', keyword_length = 0, trigger_characters = {'{'}, keyword_pattern = [[\m\\color{\w*]]},
-          -- { name = 'color_names', trigger_characters = {'#'}, keyword_length = 1},
-          -- { name = 'color_names', keyword_length = 0, keyword_pattern = [[\d\+]] },
-          -- { name = 'color_names', keyword_length = 0, keyword_pattern = [[red]] },
+          { name = 'latex_symbols', option = {strategy = 2} },
           { name = 'color_names', keyword_length = 0, keyword_pattern = [[\(\\color{\)\@<=\w*]]},
           { name = 'luasnip' }
         })
