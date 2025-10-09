@@ -1,20 +1,28 @@
 return {
   {
     'L3MON4D3/LuaSnip',
-    opts = {
+    -- tag = 'v2.*',
+    run = 'make install_jsregexp',
 
-    }
+    dependencies = {
+      'rafamadriz/friendly-snippets'
+    },
+
+    config = function()
+      require('luasnip.loaders.from_vscode').lazy_load()
+    end
   },
 
   {
     'hrsh7th/nvim-cmp',
+    lazy = true,
+    event = { "InsertEnter", "CmdlineEnter" },
 
     dependencies = {
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/cmp-buffer'},
       {'https://codeberg.org/FelipeLema/cmp-async-path'},
       {'hrsh7th/cmp-cmdline'},
-      {'L3MON4D3/LuaSnip'},
       {'saadparwaiz1/cmp_luasnip'},
       {'petertriho/cmp-git', ft = 'gitcommit' },
       {'chrisgrieser/cmp-nerdfont'},
@@ -24,13 +32,15 @@ return {
       {'onsails/lspkind.nvim'},
       {'hrsh7th/cmp-nvim-lsp-signature-help'},
       {'hrsh7th/cmp-nvim-lsp-document-symbol'},
+      {'dmitmel/cmp-cmdline-history'},
+      {'hrsh7th/cmp-calc'},
     },
 
     config = function()
-      -- require('cmp-color-names').setup()
       local cmp = require('cmp')
       local lspkind = require('lspkind')
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local luasnip = require('luasnip')
 
       -- Automatically inserts '(' after selecting function or method
       cmp.event:on(
@@ -90,6 +100,7 @@ return {
               color_names = '[Colors]',
               nvim_lsp_signature_help = '[LSP Sig]',
               nvim_lsp_document_symbol = '[LSP Doc]',
+              calc = '[Calc]'
             })
           }),
         },
@@ -98,13 +109,53 @@ return {
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          -- ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
+          ['<CR>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if luasnip.expandable() then
+                luasnip.expand()
+              else
+                cmp.confirm({
+                  select = true,
+                })
+              end
+            else
+              fallback()
+            end
+          end),
+
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({ select = true })
+              else
+                cmp.select_next_item()
+              end
+
+            elseif luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
         }),
 
         sources = cmp.config.sources({
+          { name = 'luasnip', keyword_length = 1 },
           { name = 'lazydev', group_index = 0 },
           { name = 'nvim_lsp' },
-          { name = 'luasnip' },
           { name = 'async_path' },
           { name = 'nvim_lsp_signature_help' },
           { name = 'nvim_lsp_document_symbol' },
@@ -121,17 +172,44 @@ return {
       })
 
       cmp.setup.cmdline({'/', '?'}, {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline({
+          ['<Tab>'] = {
+            c = function (_)
+              if cmp.visible() then
+                if #cmp.get_entries() == 1 then
+                  cmp.confirm({ select = true })
+                else
+                  cmp.select_next_item()
+                end
+              end
+            end
+          }
+        }),
         sources = {
-          { name = 'buffer' }
+          { name = 'buffer' },
+          { name = 'cmdline_history' },
         }
       })
 
       cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline({
+          ['<Tab>'] = {
+            c = function (_)
+              if cmp.visible() then
+                if #cmp.get_entries() == 1 then
+                  cmp.confirm({ select = true })
+                else
+                  cmp.select_next_item()
+                end
+              end
+            end
+          }
+        }),
         sources = cmp.config.sources({
           { name = 'async_path' },
-          { name = 'cmdline' }
+          { name = 'cmdline' },
+          { name = 'cmdline_history' },
+          { name = 'calc' },
         }),
         matching = { disallow_symbol_nonprefix_matching = false },
       })
@@ -153,7 +231,9 @@ return {
         sources = cmp.config.sources({
           { name = 'latex_symbols', option = {strategy = 2} },
           { name = 'color_names', keyword_length = 0, keyword_pattern = [[\(\\color{\)\@<=\w*]]},
-          { name = 'luasnip' }
+          { name = 'luasnip' },
+        }, {
+          { name = 'calc' }
         })
       })
 
