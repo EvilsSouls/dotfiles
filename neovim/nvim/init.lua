@@ -116,7 +116,4 @@ require("config.lazy")
 -- Set Color Scheme to Tokyonight
 vim.cmd[[colorscheme tokyonight-night]]
 
--- Configurate Rainbow-Delimiters
-require("config.rainbow-delimiters")
-
 require("config.remap")

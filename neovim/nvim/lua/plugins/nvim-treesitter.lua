@@ -2,6 +2,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "bash", "fish", "html", "javascript", "json", "jsonc", "toml", "javascript", "latex", "yaml" },
+    dependencies = {
+        {'nvim-treesitter/nvim-treesitter-context', opts = {}}
+    },
     highlight = {
       enable = true
     },

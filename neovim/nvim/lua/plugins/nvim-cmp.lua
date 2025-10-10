@@ -51,7 +51,7 @@ return {
       cmp.setup({
         -- enabled = function()
           -- disable completion if the cursor is `Comment` syntax group.
-          -- return not cmp.config.context.in_treesitter_capture('@comment')
+          -- return not cmp.config.context.in_treesitter_capture('comment')
         -- end,
 
         snippet = {
@@ -126,15 +126,15 @@ return {
           end),
 
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            if luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+
+            elseif cmp.visible() then
               if #cmp.get_entries() == 1 then
                 cmp.confirm({ select = true })
               else
                 cmp.select_next_item()
               end
-
-            elseif luasnip.locally_jumpable(1) then
-              luasnip.jump(1)
 
             else
               fallback()
@@ -142,10 +142,12 @@ return {
           end, { "i", "s" }),
 
           ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
+            if luasnip.locally_jumpable(-1) then
               luasnip.jump(-1)
+
+            elseif cmp.visible() then
+              cmp.select_prev_item()
+
             else
               fallback()
             end
