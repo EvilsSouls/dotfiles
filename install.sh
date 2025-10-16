@@ -10,5 +10,6 @@ stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" alacritty
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" thefuck
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" starship
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" wezterm
+stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" qute
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" locale
 sudo stow --dotfiles --dir="$HOME/dotfiles/" --target="/usr/share/i18n/locales" locales
