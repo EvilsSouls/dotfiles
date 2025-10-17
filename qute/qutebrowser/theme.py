@@ -113,7 +113,7 @@ c.colors.hints.fg = base00
 c.colors.hints.bg = base0A
 
 # Font color for the matched part of hints.
-c.colors.hints.match.fg = base05
+c.colors.hints.match.fg = base0A
 
 # Text color for the keyhint widget.
 c.colors.keyhint.fg = base05
