@@ -48,6 +48,41 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "1962818"
 hash = "4c0260feb50ea2437380690ffc241da7"
 
+[[plugin.deps]]
+use = "Deepak22903/kdeconnect-send"
+rev = "8a6936b"
+hash = "8d43ac149f5cf7b5eea4ce2ebbe8e1ba"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "46a6b9f"
+hash = "771af2becc575a3f43d0542de823969d"
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "406ce6c"
+hash = "f5afc904d5106ee368c8aa2ded43bd74"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot"
+rev = "1d28640"
+hash = "854227f2312a6287c7872726e74f8de3"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot-audio"
+rev = "1d28640"
+hash = "5f55cfa8993d3cb94ed217ffabda9366"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot-video"
+rev = "1d28640"
+hash = "3e437d65ebb31ac1ce2e1a20c93f3357"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot-image"
+rev = "1d28640"
+hash = "afa0c98d3cab4a594ce5aae7ea92a81a"
+
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "8e6296f"

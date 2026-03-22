@@ -1,5 +1,30 @@
 require("full-border"):setup()
 
+-- Setup Spotter Menu
+require('spot'):setup {
+  metadata_section = {
+    enable = true,
+    hash_cmd = 'xxhsum', -- other hashing commands may be slower
+    hash_filesize_limit = 150, -- in MB, set 0 to disable
+    relative_time = true, -- 2026-01-01 or n days ago
+    time_format = '%Y-%m-%d %H:%M', -- https://www.man7.org/linux/man-pages/man3/strftime.3.html
+    show_compression = 'percentage', ---@type false|"size"|"percentage"
+  },
+  plugins_section = {
+    enable = true,
+  },
+  style = {
+    section = '#879A39',
+    key = 'reset',
+    value = '#878580',
+    selected = '#878580',
+    colorize_metadata = true,
+    height = 30,
+    width = 60,
+    key_length = 15,
+  },
+}
+
 th.git = th.git or {}
 th.git.ignored = ui.Style():fg("#343331")
 th.git.untracked = ui.Style():fg("#1C6C66")
@@ -12,6 +37,7 @@ require("git"):setup {
   -- Order of status signs showing in the linemode
   order = 1500,
 }
+
 -- Add Symlinks to Status Bars
 Status:children_add(function(self)
   local h = self._current.hovered

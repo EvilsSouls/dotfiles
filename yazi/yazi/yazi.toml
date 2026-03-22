@@ -5,6 +5,7 @@ sort_by        = "natural"
 sort_translit  = true
 linemode       = "size"
 
+# Line Mode for Git Status of Files
 [[plugin.prepend_fetchers]]
 id  = "git"
 url = "*"
@@ -14,3 +15,18 @@ run = "git"
 id  = "git"
 url = "*/"
 run = "git"
+
+# Add a preview for archives
+[[plugin.prepend_previewers]]
+mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+run  = "ouch --show-file-icons --archive-icon=' '"
+
+# Spotters
+[plugin]
+prepend_spotters = [
+  { mime = "audio/*", run = "spot-audio" },
+  { mime = "video/*", run = "spot-video" },
+  { mime = "image/*", run = "spot-image" },
+  { url = "*/", run = "spot" },
+  { url = "*", run = "spot" },
+]
