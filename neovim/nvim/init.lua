@@ -45,7 +45,7 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 
--- Highlight the line where the cursor is on
+-- Highlight the current line
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.

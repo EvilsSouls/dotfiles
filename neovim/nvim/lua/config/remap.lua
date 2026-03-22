@@ -4,6 +4,8 @@ vim.keymap.set("n", "<Enter>", function() vim.fn.append(vim.fn.line('.'), '') vi
 vim.keymap.set("n", "<S-Enter>", function() vim.fn.append(vim.fn.line('.')-1, '') vim.cmd('norm! k') end)
 vim.keymap.set("n", "<leader>q", "q")
 vim.keymap.set("n", "q", "<Nop>")
+-- Toggle cursorcolumn
+vim.keymap.set("n", "<leader>cc", function () vim.opt.cursorcolumn = not(vim.opt.cursorcolumn:get()) end)
 
 -- Telescope Keybindings
 local builtin = require('telescope.builtin')

@@ -6,7 +6,7 @@ require 'hyperlink-snippet'
 local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 --require 'modal-wezterm'
 
-config.enable_wayland = true
+config.enable_wayland = false
 
 config.initial_cols = 120
 config.initial_rows = 28

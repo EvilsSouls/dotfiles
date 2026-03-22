@@ -10,14 +10,20 @@ settings:
     global: true
   bindings.commands:
     global: null
+  colors.tooltip.bg:
+    global: null
   colors.tooltip.fg:
     global: null
+  colors.webpage.bg:
+    global: white
   colors.webpage.darkmode.contrast:
     global: 0.1
   colors.webpage.darkmode.enabled:
     global: true
   colors.webpage.preferred_color_scheme:
     global: dark
+  content.autoplay:
+    global: false
   content.blocking.adblock.lists:
     global:
     - https://easylist.to/easylist/easylist.txt

@@ -37,9 +37,10 @@ config.bind('<Ctrl+j>', 'prompt-item-focus next', 'prompt')
 config.bind('<Ctrl+k>', 'prompt-item-focus prev', 'prompt')
 
 # Set Transparency
-c.colors.tabs.bar.bg = "#000000AA"
-c.colors.statusbar.normal.bg = "#000000AA"
-c.colors.webpage.bg = "transparent"
+c.colors.tabs.bar.bg = "rgba(0, 0, 0, 170)"
+c.colors.statusbar.normal.bg = "rgba(0, 0, 0, 170)"
+# Doesn't work due to z-index problems
+#c.colors.webpage.bg = "transparent"
 
 # Copied from BreadonPenguins config
 c.url.searchengines = {
