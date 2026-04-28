@@ -1,12 +1,15 @@
 [http]
-	lowSpeedLimit = 1000
-	lowSpeedTime = 60
-	postBuffer = 524288000
+  lowSpeedLimit = 1000
+  lowSpeedTime = 60
+  postBuffer = 524288000
+
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
 [user]
-	email = evilssouls@protonmail.com
-	name = evilssouls
+  email = evilssouls@protonmail.com
+  name = evilssouls
+
 [core]
   editor = nvim
   pager = delta
@@ -14,6 +17,17 @@
 [interactive]
   diffFilter = delta --color-only
 
+[include]
+  path = /home/evilssouls/.config/delta/themes.gitconfig
+
+
+[diff]
+  colorMoved = default
+
 [delta]
   navigate = true
   side-by-side = true
+  plus-style = syntax "#1d2b0e"
+  minus-style = syntax "#38030d"
+  features = zebra-dark
+  wrap-max-lines = unlimited

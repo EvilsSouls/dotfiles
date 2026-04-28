@@ -5,6 +5,16 @@ sort_by        = "natural"
 sort_translit  = true
 linemode       = "size"
 
+[opener]
+diff = [
+  { run = "delta %s1 %s2", orphan = true, for = "linux"}
+]
+
+[open]
+append_rules = [
+  { url = "*.md", use = "diff"}
+]
+
 # Line Mode for Git Status of Files
 [[plugin.prepend_fetchers]]
 id  = "git"

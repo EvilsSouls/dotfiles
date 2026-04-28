@@ -34,6 +34,7 @@ return {
       {'hrsh7th/cmp-nvim-lsp-document-symbol'},
       {'dmitmel/cmp-cmdline-history'},
       {'hrsh7th/cmp-calc'},
+      {'micangl/cmp-vimtex'}
     },
 
     config = function()
@@ -247,6 +248,18 @@ return {
           { name = 'luasnip' },
           { name = 'nerdfont', keyword_length = 3 },
           { name = 'buffer', keyword_length = 4 }
+        })
+      })
+
+      cmp.setup.filetype('tex', {
+        sources = cmp.config.sources({
+          { name = 'vimtex' },
+          { name = 'luasnip', keyword_length = 1 },
+          { name = 'nvim_lsp' },
+          { name = 'async_path' },
+          { name = 'nvim_lsp_signature_help' },
+          { name = 'nvim_lsp_document_symbol' },
+          { name = 'buffer', keyword_length = 4 },
         })
       })
     end

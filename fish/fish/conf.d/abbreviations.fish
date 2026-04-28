@@ -19,3 +19,8 @@ abbr -a lsbc 'lsblk | bat -p -l conf'
 # --- wiki-tui abbreviations ---
 abbr -a wk wiki-tui
 abbr -a wkd wiki-tui -l de
+
+# --- Use trash-put instead of rm for most cases ---
+abbr -a rm 'echo "holy shit, stop using `rm`, when you could just use `r`. It has caused ruin before; it will cause it again"'
+abbr -a t 'gtrash put'
+abbr -a gt 'gtrash'

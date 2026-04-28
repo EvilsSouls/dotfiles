@@ -4,6 +4,11 @@ run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
+on   = "<A-d>"
+run  = "plugin delta"
+desc = "View Diff of selected and hovered file"
+
+[[mgr.prepend_keymap]]
 on   = "y"
 run  = [ 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ]
 desc = "Yank files to system clipboard aswell"
@@ -94,3 +99,18 @@ desc = "Archive selected files (compression level)"
 on   = [ "C", "u" ]
 run  = "plugin compress -phl"
 desc = "Archive selected files (password+header+level)"
+
+[[mgr.prepend_keymap]]
+on   = [ "R", "b" ]
+run  = "plugin recycle-bin"
+desc = "Open Recycle Bin Menu"
+
+[[mgr.prepend_keymap]]
+on   = "u"
+run  = "plugin restore"
+desc = "Restore last deleted files/folders"
+
+[[mgr.prepend_keymap]]
+on   = "U"
+run  = "plugin restore -- --interactive"
+desc = "Restore deleted files/folders (Interactive)"

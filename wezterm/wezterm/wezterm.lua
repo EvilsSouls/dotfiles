@@ -24,18 +24,23 @@ config.inactive_pane_hsb = {
   saturation = 0.9,
   brightness = 0.8,
 }
---config.window_background_opacity = 0.9
+config.window_background_opacity = 0.6
 --config.kde_window_background_blur = true
 
 -- Tab Bar
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = false
 config.hide_tab_bar_if_only_one_tab = true
-config.colors = {tab_bar = {active_tab = {
-  bg_color = '#181818',
-  fg_color = '#c0c0c0',
-  underline = 'Single',
-}}}
+config.colors = {
+  tab_bar = {
+    active_tab = {
+      bg_color = '#181818',
+      fg_color = '#c0c0c0',
+      underline = 'Single',
+    }
+  },
+  background = 'black',
+}
 bar.apply_to_config(config)
 
 -- Finally, return the configuration to wezterm:

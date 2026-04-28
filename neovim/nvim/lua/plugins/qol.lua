@@ -77,10 +77,35 @@ return {
   },
 
   {
-    'norcalli/nvim-colorizer.lua',
+    'catgoose/nvim-colorizer.lua',
+    event = "BufReadPre",
     opts = {
-      '*',
-      css = {
+      filetypes = {
+        "*",
+        css = { css = true },
+        html = { tailwind = true, css = true },
+        scss = { css = true, scss = true, }
+      },
+
+      options = {
+        parsers = {
+          hex = {rrggbbaa = true},
+          xterm = {enable = true},
+          xcolor = {enable = true},
+          css_var = {parsers = {
+            css = true,
+            css_fn = true,
+            css_color = true
+          }},
+        },
+
+        display = {
+          mode = { "virtualtext", "underline" },
+          virtualtext = { position = "before", char = "󱓻"}
+        },
+      }
+
+      --[[ css = {
         mode = 'foreground',
         css = true,
         css_fn = true,
@@ -93,8 +118,14 @@ return {
         css_fn = true,
         rgb_fn = true,
         hsl_fn = true,
-      }
+      } ]]
     }
+  },
+
+  {
+    'https://github.com/nvzone/minty',
+    dependencies = {'nvchad/volt'},
+    cmd = { "Shades", "Huefy" },
   },
 
   {'mluders/comfy-line-numbers.nvim', opts = {}},

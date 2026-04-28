@@ -5,7 +5,7 @@
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.keymap.set("", "<Space>", "<Nop>")
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = "\\"
 
 -- [[ Setting options ]] See `:h vim.o`
 -- NOTE: You can change these options as you wish!

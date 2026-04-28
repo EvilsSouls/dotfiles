@@ -1,4 +1,5 @@
 require("full-border"):setup()
+require("recycle-bin"):setup()
 
 -- Setup Spotter Menu
 require('spot'):setup {

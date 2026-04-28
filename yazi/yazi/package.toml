@@ -83,6 +83,21 @@ use = "AminurAlam/yazi-plugins:spot-image"
 rev = "1d28640"
 hash = "afa0c98d3cab4a594ce5aae7ea92a81a"
 
+[[plugin.deps]]
+use = "uhs-robert/recycle-bin"
+rev = "fa68711"
+hash = "8714306b5cac6359edbacbf545fbd691"
+
+[[plugin.deps]]
+use = "boydaihungst/restore"
+rev = "0e08704"
+hash = "e4d7c06510b4fe5f64ae31fbb4e017d6"
+
+[[plugin.deps]]
+use = "EvilsSouls/delta"
+rev = "042273c"
+hash = "d57312877deca6031f986653f885492b"
+
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "8e6296f"

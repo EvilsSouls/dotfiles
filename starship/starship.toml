@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = '''
-[](fg:first bg:black)$os[ ](inverted fg:prev_fg bg:prev_bg)$username[](fg:prev_fg bg:second)$hostname[](fg:prev_bg bg:third)$directory[](fg:prev_bg bg:fourth)$git_branch$git_status[](fg:prev_bg bg:black)$fill[](fg:dark_red bg:prev_bg)$status$sudo[](fg:prev_bg bg:light_red)$cmd_duration[](fg:prev_bg bg:lighter_red)$time[](fg:prev_bg bg:black)
+[](fg:first)$os[ ](inverted fg:prev_fg bg:prev_bg)$username[](fg:prev_fg bg:second)$hostname[](fg:prev_bg bg:third)$directory[](fg:prev_bg bg:fourth)$git_branch$git_status[](fg:prev_bg)$fill[](fg:dark_red bg:prev_bg)$status$sudo[](fg:prev_bg bg:light_red)$cmd_duration[](fg:prev_bg bg:lighter_red)$time[](fg:prev_bg)
 $character
 '''
 palette = 'cyan'

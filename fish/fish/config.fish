@@ -3,6 +3,13 @@
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
+
+    # --- starship ---
+    starship init fish | source
+    function starship_transient_prompt_func
+      starship module character
+    end
+    enable_transience
 end
 
 # Created by `pipx` on 2025-08-02 21:14:22
@@ -13,13 +20,6 @@ function fish_user_key_bindings
   bind --mode normal alt-v fish_clipboard_paste
   bind --mode visual alt-c fish_clipboard_copy
 end
-
-# --- starship ---
-starship init fish | source
-function starship_transient_prompt_func
-   starship module character
-end
-enable_transience
 
 # --- fzf and fzf fish plugins ---
 set -gx FZF_DEFAULT_COMMAND 'fd --max-depth 12 --strip-cwd-prefix --hidden --follow --exclude .git'
@@ -45,3 +45,6 @@ set -x THEFUCK_OVERRIDDEN_ALIASES 'ls'
 
 # --- zoxide ---
 zoxide init --cmd cd fish | source
+
+# --- gtrash ---
+gtrash completion fish | source
