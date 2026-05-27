@@ -1,38 +1,38 @@
 return {
-  {
-    "yeasin50/manim.nvim",
-    cmd = { "ManimCheck", "ManimPlay" , "ManimExport", "ManimExportProject", "ManimPlayFrom"},
-    ft = "python",
-    keys = {
-      { "<localleader>mc", "<cmd>ManimCheck<cr>", desc = "Check Manim availability" },
-      { "<localleader>mm", "<cmd>ManimPlay<cr>",  desc = "Play Manim class" },
-      { "<localleader>mp", "<cmd>ManimPlayFrom<cr>", desc = "Renders and plays the scene from the cursor line, injecting self.next_section()." },
-      { "<localleader>me", "<cmd>ManimExport<cr>", desc = "Exports the scene under the cursor using export_args" },
-      { "<localleader>mf", "<cmd>ManimExportProject<cr>", desc = "Exports all scene files in the project using the Python export script and multi-core rendering." }
-    },
-    dependencies = {
-      'akinsho/toggleterm.nvim'
-    },
-
-    config = function()
-      require("manim").setup({
-        manim_path = "manim-slides", -- system binary
-        play_args = { "-pql" }, -- quality/preview args
-        export_args = {
-          "-qk",
-          "--transparent",
-        },
-        project_config = {
-          resolution = {3840, 2160},           -- width x height
-          fps = 60,                             -- frames per second
-          transparent = true,                   -- transparent background
-          export_dir = "/home/evilssouls/Videos/manim_exports", -- output directory
-          max_workers = 3,                      -- number of concurrent renders
-          ignore_files = {"common.py", "export.py"},         -- files to skip
-          failed_list_file = "failed_files.txt",             -- log failures
-        }
-      }
-    )
-  end,
-  }
+  -- {
+  --   "yeasin50/manim.nvim",
+  --   cmd = { "ManimCheck", "ManimPlay" , "ManimExport", "ManimExportProject", "ManimPlayFrom"},
+  --   ft = "python",
+  --   keys = {
+  --     { "<localleader>mc", "<cmd>ManimCheck<cr>", desc = "Check Manim availability" },
+  --     { "<localleader>mm", "<cmd>ManimPlay<cr>",  desc = "Play Manim class" },
+  --     { "<localleader>mp", "<cmd>ManimPlayFrom<cr>", desc = "Renders and plays the scene from the cursor line, injecting self.next_section()." },
+  --     { "<localleader>me", "<cmd>ManimExport<cr>", desc = "Exports the scene under the cursor using export_args" },
+  --     { "<localleader>mf", "<cmd>ManimExportProject<cr>", desc = "Exports all scene files in the project using the Python export script and multi-core rendering." }
+  --   },
+  --   dependencies = {
+  --     'akinsho/toggleterm.nvim'
+  --   },
+  --
+  --   config = function()
+  --     require("manim").setup({
+  --       manim_path = "manim-slides", -- system binary
+  --       play_args = { "-pql" }, -- quality/preview args
+  --       export_args = {
+  --         "-qk",
+  --         "--transparent",
+  --       },
+  --       project_config = {
+  --         resolution = {3840, 2160},           -- width x height
+  --         fps = 60,                             -- frames per second
+  --         transparent = true,                   -- transparent background
+  --         export_dir = "/home/evilssouls/Videos/manim_exports", -- output directory
+  --         max_workers = 3,                      -- number of concurrent renders
+  --         ignore_files = {"common.py", "export.py"},         -- files to skip
+  --         failed_list_file = "failed_files.txt",             -- log failures
+  --       }
+  --     }
+  --   )
+  -- end,
+  -- }
 }

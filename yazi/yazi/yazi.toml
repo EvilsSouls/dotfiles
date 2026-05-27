@@ -17,14 +17,14 @@ append_rules = [
 
 # Line Mode for Git Status of Files
 [[plugin.prepend_fetchers]]
-id  = "git"
-url = "*"
-run = "git"
+group = "git"
+url   = "*"
+run   = "git"
 
 [[plugin.prepend_fetchers]]
-id  = "git"
-url = "*/"
-run = "git"
+group = "git"
+url   = "*/"
+run   = "git"
 
 # Add a preview for archives
 [[plugin.prepend_previewers]]

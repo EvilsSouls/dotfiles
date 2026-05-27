@@ -15,6 +15,8 @@ end
 # Created by `pipx` on 2025-08-02 21:14:22
 set PATH $PATH /home/evilssouls/.local/bin
 
+set PATH $PATH /home/evilssouls/.config/emacs/bin/
+
 function fish_user_key_bindings
   bind --mode insert alt-v fish_clipboard_paste
   bind --mode normal alt-v fish_clipboard_paste
