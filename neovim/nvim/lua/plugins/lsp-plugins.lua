@@ -17,7 +17,7 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "clangd", "lua_ls", "rust_analyzer", "fish_lsp", "basedpyright", "vtsls" },
+      ensure_installed = { "clangd", "lua_ls", "rust_analyzer", "fish_lsp", "basedpyright", "vtsls", "ruff" },
       automatic_enable = {
         exclude = { "rust_analyzer" }
       }

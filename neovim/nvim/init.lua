@@ -117,3 +117,4 @@ require("config.lazy")
 vim.cmd[[colorscheme tokyonight-night]]
 
 require("config.remap")
+require("config.lsp")
