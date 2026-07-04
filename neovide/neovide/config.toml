@@ -1,0 +1,11 @@
+[font]
+size = 11.25
+normal = [
+  'JetBrainsMono Nerd Font',
+  'JetBrains Mono',
+  'Noto Color Emoji',
+  'Symbols Nerd Font Mono',
+]
+
+[box-drawing]
+mode = "font-glyph"

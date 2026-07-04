@@ -4,6 +4,7 @@ stow --dotfiles --dir="$HOME/dotfiles" bash
 stow --dotfiles --dir="$HOME/dotfiles" git
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" fish
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" neovim
+stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" neovide
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" fastfetch
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" bat
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" alacritty
