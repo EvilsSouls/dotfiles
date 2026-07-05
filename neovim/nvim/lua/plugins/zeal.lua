@@ -5,7 +5,7 @@ return {
     opts = {
       use_toggleterm = true,
       toggleterm = {
-        toggle_map = "<leader>hh"
+        toggle_map = "<leader>z"
       },
       picker = {
         type = "snacks"

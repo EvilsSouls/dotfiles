@@ -9,7 +9,33 @@ return {
 
   {
     "folke/which-key.nvim",
-    opts = {},
+    config = function ()
+      local wk = require('which-key')
+
+      wk.setup({
+        preset = "helix",
+
+        ---@type wk.Spec
+        spec = {
+          { "<leader>t", group = "Options", icon = {icon=" ", color=azure}},
+          { "<leader>f", group = "Fuzzy Finding", icon = {icon="󰭎 ", color=purple}}
+        },
+
+        icons = {
+          keys = {
+            C = "󰯱 ",
+            M = "󰯫 ",
+            D = "󰌽 "
+          }
+        }
+      })
+    end,
+
+    init = function ()
+      vim.keymap.set('n', '<leader>?', function()
+        require("which-key").show({ global = false })
+      end, {desc="Buffer Local Keymaps (which-key)"})
+    end
   },
 
   {

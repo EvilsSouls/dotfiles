@@ -5,7 +5,7 @@ return {
     opts = {
       theme = 'tokyonight-night',
       globalstatus = true,
-      extensions = {'nvim-tree', 'fzf', 'trouble'},
+      extensions = {'neo-tree', 'fzf', 'trouble', 'toggleterm', 'lazy'},
       sections = {
         lualine_a = {
           {'mode'},

@@ -15,9 +15,3 @@ This is the todo for my neovim configuration.
 - [ ] Change lualine to be more minimal when screen size is limited
 - [ ] Nvim Tree
 - [ ] Trouble Plugin
-
-This is a test of the colors. The default regex that is used (in js notation) is: `/(-?\d+(\.\d+)?|\b\w+(-\w*)*)/g`
-
-This is another test of the colors. \colors{red
-
-\color{LightSkyBlue} orange

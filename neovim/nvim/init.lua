@@ -113,9 +113,6 @@ vim.cmd('packadd! nohlsearch')
 -- Require LazyVim
 require("config.lazy")
 
--- Set Color Scheme to Tokyonight
-vim.cmd[[colorscheme tokyonight-night]]
-
 require("config.remap")
 require("config.lsp")
 require("config.gui")
