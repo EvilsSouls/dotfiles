@@ -1,0 +1,2 @@
+- Change keybindings to switch windows to use vim motions (preferably <C-S-\[hjkl\])
+- Make nvim panes and kitty panes interoperable
