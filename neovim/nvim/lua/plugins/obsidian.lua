@@ -17,6 +17,7 @@ return {
       -- Required.
       "nvim-lua/plenary.nvim",
     },
+
     opts = {
       ui = { enable = false },
 
@@ -29,6 +30,11 @@ return {
 
       new_notes_location = "current_dir"
     },
+
+    init = function()
+      ---@todo I don't remember why I need this for obsidian.nvim
+      vim.o.conceallevel = 2
+    end
   },
 
   {

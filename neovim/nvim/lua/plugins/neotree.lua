@@ -13,8 +13,14 @@ return {
       source_selector = {
         winbar = false,
       }
-    }
+    },
+    init = function ()
+      -- Disable netrw to instead use neotree
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end
   },
+
   {
     "Crysthamus/nvim-file-operations",
     dependencies = {
@@ -24,6 +30,7 @@ return {
       require("nvim-file-operations").setup()
     end,
   },
+
   {
     "s1n7ax/nvim-window-picker",
     version = "2.*",

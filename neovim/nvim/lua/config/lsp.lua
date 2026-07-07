@@ -15,3 +15,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo[0].formatexpr = "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})"
   end
 })
+
+-- [[ Configure Diagnostics ]]
+vim.diagnostic.config({virtual_text=true})
