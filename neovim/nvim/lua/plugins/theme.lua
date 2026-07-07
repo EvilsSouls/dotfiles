@@ -3,7 +3,7 @@ return {
     "folke/tokyonight.nvim",
     opts = {
       -- transparent = true,
-      terminal_colors = false,
+      -- terminal_colors = false,
 
       -- Colors created, by mixing 0.23 full black with original colors found at
       -- https://github.com/folke/tokyonight.nvim/blob/cdc07ac78467a233fd62c493de29a17e0cf2b2b6/extras/lua/tokyonight_night.lua

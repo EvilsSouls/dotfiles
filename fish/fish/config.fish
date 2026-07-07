@@ -50,3 +50,8 @@ zoxide init --cmd cd fish | source
 
 # --- gtrash ---
 gtrash completion fish | source
+
+# --- ov pager ---
+set -gx PAGER ov
+set -gx BAT_PAGER BAT_PAGER "ov -F -H3"
+ov --completion fish > ~/.config/fish/completions/ov.fish

@@ -1,2 +1,3 @@
 - Change keybindings to switch windows to use vim motions (preferably <C-S-\[hjkl\])
 - Make nvim panes and kitty panes interoperable
+- Just as settings recommend, change background color of kitty to match nvim when entering nvim

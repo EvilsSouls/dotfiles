@@ -1,3 +1,6 @@
+# delta configuration copied from delta documentation and https://noborus.github.io/ov/delta/index.html
+# to use ov as pager
+
 [http]
   lowSpeedLimit = 1000
   lowSpeedTime = 60
@@ -12,7 +15,7 @@
 
 [core]
   editor = nvim
-  pager = delta
+  pager = delta --pager='ov -F'
 
 [interactive]
   diffFilter = delta --color-only
@@ -20,6 +23,16 @@
 [include]
   path = /home/evilssouls/.config/delta/themes.gitconfig
 
+
+[pager]
+  # overload delta pager for some commands
+  show = delta --pager='ov -F --header 3'
+
+  # We are now overloading some commands via "delta features"
+  # This allows us to use different pager per git command
+  # It allows to maintain a simpler config file and avoid escaping quotes
+  diff = delta --features ov-diff
+  log  = delta --features ov-log
 
 [diff]
   colorMoved = default
@@ -31,3 +44,16 @@
   minus-style = syntax "#38030d"
   features = zebra-dark
   wrap-max-lines = unlimited
+
+# we define the delta feature "ov-diff" we are using for git diff
+[delta "ov-diff"]
+    # the idea is to overload the pager used by delta when using git diff
+    # we are using the same pattern used by delta when the default pager (less) is used
+    # using ov section feature brings a better experience
+    pager=ov -F --section-delimiter '^(commit|added:|removed:|renamed:|Δ)' --section-header --pattern '•'
+
+# we define the delta feature "ov-log" we are using for git log
+[delta "ov-log"]
+    # the idea is to overload the pager used by delta when using git log
+    # using ov section feature brings a better experience
+    pager=ov -F --section-delimiter '^commit' --section-header-num 3
