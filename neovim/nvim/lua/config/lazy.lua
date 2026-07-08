@@ -26,4 +26,11 @@ require("lazy").setup({
   install = { colorscheme = { "tokyonight", "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "netrwPlugin"
+      }
+    }
+  }
 })

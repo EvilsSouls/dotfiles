@@ -3,7 +3,7 @@ return {
     "ibhagwan/fzf-lua",
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    -- lazy = false,
+    lazy = true,
     ---@module "fzf-lua"
     ---@type fzf-lua.Config|{}
     ---@diagnostic disable: missing-fields

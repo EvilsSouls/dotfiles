@@ -17,7 +17,7 @@ return {
 
         ---@type wk.Spec
         spec = {
-          { "<leader>t", group = "Options", icon = {icon=" ", color=azure}},
+          { "<leader>T", group = "Options", icon = {icon=" ", color=azure}},
           { "<leader>f", group = "Fuzzy Finding", icon = {icon="󰭎 ", color=purple}}
         },
 
@@ -32,8 +32,8 @@ return {
 
       vim.keymap.set(
         'n', '<leader>?',
-        function() require("which-key").show({ global = false }) end,
-        {desc="Buffer Local Keymaps (which-key)"}
+        function() require("which-key").show() end,
+        {desc="Show Keybindings"}
       )
     end,
   },
@@ -155,9 +155,4 @@ return {
   },
 
   {'mluders/comfy-line-numbers.nvim', opts = {}},
-
-  {
-    'lewis6991/gitsigns.nvim',
-    opts = {}
-  }
 }

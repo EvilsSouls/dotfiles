@@ -39,3 +39,7 @@ vim.o.confirm = true
 
 -- Use a global statusbar
 vim.o.laststatus = 3
+
+-- More intuitive splitting
+vim.o.splitright = true
+vim.o.splitbelow = true

@@ -2,10 +2,18 @@
 -- TODO: Change Back and Forwards Keys to use Shift+h and Shift+L
 
 vim.keymap.set("", "<leader>nh", ":nohl<CR>")
-vim.keymap.set("n", "<Enter>", function() vim.fn.append(vim.fn.line('.'), '') vim.cmd('norm! j') end)
-vim.keymap.set("n", "<S-Enter>", function() vim.fn.append(vim.fn.line('.')-1, '') vim.cmd('norm! k') end)
 vim.keymap.set("n", "<leader>q", "q")
 vim.keymap.set("n", "q", "<Nop>")
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  desc = "Give <Enter> and <S-Enter> custom keybindings, if the buffer is supposed to be edited",
+  callback = function (args)
+    if vim.bo[args.buf].buftype == "" then
+      vim.keymap.set("n", "<Enter>", function() vim.fn.append(vim.fn.line('.'), '') vim.cmd('norm! j') end, {buf=args.buf})
+      vim.keymap.set("n", "<S-Enter>", function() vim.fn.append(vim.fn.line('.')-1, '') vim.cmd('norm! k') end, {buf=args.buf})
+    end
+  end
+})
 
 -- H and L are a lot more ergonomical than ^ and 0
 vim.keymap.set("n", "H", "^")
@@ -58,45 +66,9 @@ end
 --   
 -- end
 
-vim.keymap.set("n", "<leader>tc", toggle_setting("cursorcolumn"), {desc = "toggle cursor column"})
-vim.keymap.set("n", "<leader>tn", toggle_setting("relativenumber"), {desc = "toggle relative numbers"})
-vim.keymap.set("n", "<leader>tw", toggle_setting("wrap"), {desc = "toggle wrapping"})
-
--- Theme Toggles
-vim.keymap.set("n", "<leader>ttf", function()
-  local current_options = require('tokyonight.config').options
-  local new_val = not(current_options.transparent)
-  current_options.transparent = new_val
-
-  vim.notify("Set built-in transparency to " .. tostring(new_val))
-  print("Transparency:", current_options.transparent)
-
-  -- Refresh colorscheme
-  require('tokyonight').setup(current_options)
-  vim.cmd.colorscheme('tokyonight-night')
-end, {desc="Toggle tokyonight's built-in transparency setting"})
-
-vim.keymap.set("n", "<leader>ttd", function()
-  ---@class tokyonight.Config
-  local current_options = require('tokyonight.config').options
-
-  if current_options.on_colors_backup == nil then
-    vim.notify("Set background back to normal")
-    current_options.on_colors_backup = current_options.on_colors
-    current_options.on_colors = function(colors) end
-  else
-    vim.notify("Darkened the background")
-    current_options.on_colors = current_options.on_colors_backup
-    current_options.on_colors_backup = nil
-  end
-
-  require('tokyonight').setup(current_options)
-  vim.cmd.colorscheme('tokyonight-night')
-end, {desc="Toggle the color overrides darkening the backgrounds"})
-
----@todo Make toggle functions to toggle terminal transparency.
---- Perhaps also make changing the darkening of colors also chane the values that the terminal makes transparent
---- so that there are two independent toggles: darkening of background and transparency of terminal
+vim.keymap.set("n", "<leader>Tc", toggle_setting("cursorcolumn"), {desc = "toggle cursor column"})
+vim.keymap.set("n", "<leader>Tn", toggle_setting("relativenumber"), {desc = "toggle relative numbers"})
+vim.keymap.set("n", "<leader>Tw", toggle_setting("wrap"), {desc = "toggle wrapping"})
 
 -- Bufferline Keybindings
 vim.keymap.set('n', 'gu', vim.cmd.BufferLinePick)

@@ -20,8 +20,10 @@ return {
           enabled=false
         }
       })
+    end,
 
-      vim.keymap.set("", "<leader>u", function() require('atone.core').toggle() end, {desc="Toggle Undotree"})
-    end
+    keys = {
+      { "<leader>u", function() require('atone.core').toggle() end, desc="Toggle Undotree" }
+    }
   }
 }
