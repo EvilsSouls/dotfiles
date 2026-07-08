@@ -6,7 +6,9 @@ return {
     dependencies = {
       {'nvim-treesitter/nvim-treesitter-context', opts = {}}
     },
-    init = function ()
+    config = function ()
+      require('nvim-treesitter').setup({})
+
       require('nvim-treesitter').install { 'c', 'lua', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline', 'bash', 'fish', 'html', 'json', 'toml', 'javascript', 'latex', 'yaml', 'python', 'typescript', 'gitcommit' }
 
       -- Folds should default to open

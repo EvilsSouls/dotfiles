@@ -98,35 +98,6 @@ end, {desc="Toggle the color overrides darkening the backgrounds"})
 --- Perhaps also make changing the darkening of colors also chane the values that the terminal makes transparent
 --- so that there are two independent toggles: darkening of background and transparency of terminal
 
--- -- Telescope Keybindings
--- local builtin = require('telescope.builtin')
--- vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
--- vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
--- vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
--- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-
--- fzf keybindings
-local fzf = require'fzf-lua'
-vim.keymap.set("", "<leader>f<space>", fzf.resume, {desc = "Resume last query"})
-vim.keymap.set("", "<leader>fz", fzf.zoxide, {desc = "Change directory using Zoxide"})
-vim.keymap.set("", "<leader>fd", fzf.files, {desc = "Find File"})
-vim.keymap.set("", "<leader>fs", fzf.grep, {desc = "Search inside Files"})
-vim.keymap.set("", "<leader>fe", fzf.global, {desc = "Select Files, Buffers and Symbols"})
-vim.keymap.set("", "<leader>fj", fzf.lsp_document_symbols, {desc = "Search Symbols"})
-vim.keymap.set("", "<leader>ff", fzf.lsp_finder, {desc = "Search through all LSP locations"})
-vim.keymap.set("", "<leader>fb", fzf.buffers, {desc = "Select Buffer"})
-vim.keymap.set("", "<leader>fh", fzf.history, {desc = "Traverse Opened File History"})
-vim.keymap.set("", "<leader>ft", fzf.tabs, {desc = "Select Tab"})
-vim.keymap.set("", "<leader>f/", fzf.search_history, {desc = "Traverse search history"})
-vim.keymap.set("", "<leader>fu", fzf.undotree, {desc = "Traverse undo tree"})
-vim.keymap.set("", "<leader>f:", fzf.command_history, {desc = "Traverse command history"})
-vim.keymap.set("", "<leader>fg", fzf.help_tags, {desc = "Traverse help tags"})
-vim.keymap.set("", "<leader>fm", fzf.marks, {desc = "Traverse marks"})
-vim.keymap.set("", "<leader>fr", fzf.registers, {desc = "Pick register"})
-vim.keymap.set("", "<leader>fk", fzf.keymaps, {desc = "Search keymaps"})
-vim.keymap.set("", "<leader>fo", fzf.nvim_options, {desc = "Search options"})
-vim.keymap.set("", "<leader>f<cr>", fzf.builtin, {desc = "Pick builtin Command"})
-
 -- Bufferline Keybindings
 vim.keymap.set('n', 'gu', vim.cmd.BufferLinePick)
 

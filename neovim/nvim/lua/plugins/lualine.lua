@@ -4,7 +4,6 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       theme = 'tokyonight-night',
-      globalstatus = true,
       extensions = {'neo-tree', 'fzf', 'trouble', 'toggleterm', 'lazy'},
       sections = {
         lualine_a = {
