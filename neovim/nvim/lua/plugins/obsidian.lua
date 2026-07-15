@@ -39,6 +39,7 @@ return {
 
   {
     "oflisback/obsidian-bridge.nvim",
+    lazy = true,
     opts = {
       obsidian_server_address = "https://127.0.0.1:27124",
       cert_path = "~/.ssl/obsidian.crt",
@@ -48,7 +49,6 @@ return {
       "BufReadPre *.md",
       "BufNewFile *.md",
     },
-    lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
@@ -56,6 +56,7 @@ return {
 
   {
     'MeanderingProgrammer/render-markdown.nvim',
+    ft = "markdown",
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' }, -- if you use standalone mini plugins
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons

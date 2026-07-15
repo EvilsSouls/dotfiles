@@ -18,7 +18,8 @@ return {
         ---@type wk.Spec
         spec = {
           { "<leader>T", group = "Options", icon = {icon=" ", color=azure}},
-          { "<leader>f", group = "Fuzzy Finding", icon = {icon="󰭎 ", color=purple}}
+          { "<leader>f", group = "Fuzzy Finding", icon = {icon="󰭎 ", color=purple}},
+          { "<leader>?", group = "Which Key", icon = {icon=" ", color=cyan}}
         },
 
         icons = {
@@ -31,9 +32,15 @@ return {
       })
 
       vim.keymap.set(
-        'n', '<leader>?',
+        'n', '<leader>?g',
         function() require("which-key").show() end,
         {desc="Show Keybindings"}
+      )
+
+      vim.keymap.set(
+        'n', '<leader>?l',
+        function() require("which-key").show({global=false}) end,
+        {desc="Show Buffer-Specific Keybindings"}
       )
     end,
   },

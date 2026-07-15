@@ -1,5 +1,6 @@
 return {
   {
+    enabled = false,
     "paradoxical-dev/zeal.nvim",
     event = "VeryLazy",
     opts = {
