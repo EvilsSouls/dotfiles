@@ -2,6 +2,8 @@ return {
   {
     'akinsho/bufferline.nvim',
     version = '4.9.1',
+    ---@todo Investigate whether lazy loading may be enabled
+    lazy = false,
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('bufferline').setup {
@@ -14,6 +16,10 @@ return {
           end
         }
       }
-    end
+    end,
+
+    keys = {
+      {'gu', vim.cmd.BufferLinePick, desc = "Change Tabs"}
+    }
   }
 }

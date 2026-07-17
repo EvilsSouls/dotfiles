@@ -1,7 +1,7 @@
 return {
   {
     'L3MON4D3/LuaSnip',
-    -- tag = 'v2.*',
+    -- version = 'v2.*',
     run = 'make install_jsregexp',
 
     dependencies = {
@@ -13,7 +13,137 @@ return {
     end
   },
 
+  ---@todo Perhaps consider cmp compat
   {
+    'saghen/blink.cmp',
+    dependencies = {
+      'saghen/blink.lib',
+      'L3MON4D3/LuaSnip',
+      'onsails/lspkind.nvim',
+      'nvim-tree/nvim-web-devicons',
+      -- 'MahanRahmati/blink-nerdfont.nvim', -- Does not fully work with v2 apparently
+    },
+    build = function()
+      -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
+      -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+      require('blink.cmp').build():pwait()
+    end,
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+      -- 'super-tab' for mappings similar to vscode (tab to accept)
+      -- 'enter' for enter to accept
+      -- 'none' for no mappings
+      --
+      -- All presets have the following mappings:
+      -- C-space: Open menu or open docs if already open
+      -- C-n/C-p or Up/Down: Select next/previous item
+      -- C-e: Hide menu
+      -- C-k: Toggle signature help (if signature.enabled = true)
+      --
+      -- See :h blink-cmp-config-keymap for defining your own keymap
+      keymap = { preset = 'default' },
+
+      sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+      -- Does not work with v2
+      -- providers = {
+      --   nerdfont = {
+      --     module = "blink-nerdfont",
+      --     name = "Nerd Fonts",
+      --     score_offset = 15,
+      --   }
+      -- },
+
+      -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+      -- You may use a lua implementation instead by using `implementation = "lua"`
+      -- See the fuzzy documentation for more information
+      fuzzy = { implementation = "rust" },
+
+      -- Configure luasnip as snippet engine to use with blink.cmp
+      snippets = { preset = 'luasnip' },
+
+      ---@todo Configure completions to more easily separate different kinds of sources, different columns, etc.
+      ---@todo investigate whether lspkind is actually needed
+      ---@todo change color of different kind symbols coming from different sources
+
+      -- Configure Completion Menu
+      completion = {
+        documentation = {
+          auto_show = true
+        },
+
+        -- Use lsp-kind and nvim-web-devicons as icons
+        menu = {
+          draw = {
+            components = {
+              kind_icon = {
+                text = function(ctx)
+                  local icon = ctx.kind_icon
+                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                    local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+                    if dev_icon then
+                      icon = dev_icon
+                    end
+                  else
+                    icon = require("lspkind").symbol_map[ctx.kind] or ""
+                  end
+
+                  return icon .. ctx.icon_gap
+                end,
+
+                ---@todo Actually implement colors correctly, so that different sources / different kinds are highlighted correctly
+                -- Optionally, use the highlight groups from nvim-web-devicons
+                -- You can also add the same function for `kind.highlight` if you want to
+                -- keep the highlight groups in sync with the icons.
+                highlight = function(ctx)
+                  local hl = 'BlinkCmpKind'
+                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                    local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+                    if dev_icon then
+                      hl = dev_hl
+                    end
+                  end
+                  return hl
+                end,
+              },
+
+              source_name = {
+                text = function(ctx)
+                  local source_abbreviations = {
+                    Snippets = "S",
+                    LSP = "L",
+                    Path = "P",
+                    Buffer = "B"
+                  }
+
+                  local name = source_abbreviations[ctx.source_name] or ctx.source_name
+
+                  return "[" .. name .. "]"
+                end
+              }
+            },
+
+            columns = {
+              { "kind_icon" },
+              { "label", "label_description", gap = 1},
+              { "source_name" },
+            }
+          }
+        }
+      },
+    },
+
+    config = function(plugin, opts)
+      require(plugin.name).setup(opts)
+
+      vim.api.nvim_set_hl(0, "BlinkCmpSource", {link = 'Comment'})
+      vim.api.nvim_set_hl(0, "BlinkCmpKind", {link = 'OkMsg'})
+    end
+  },
+
+  --[[ {
     'hrsh7th/nvim-cmp',
     lazy = true,
     event = { "InsertEnter", "CmdlineEnter" },
@@ -78,7 +208,8 @@ return {
         },
 
         completion = {
-          keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]], -- default pattern defined by nvim-cmp; /(-?\d+(\.\d+)?|\b\w+(-\w*)*)/g as a JS regex
+          -- Remove backslash at the end of pattern to once again get two square brackets next to each other
+          keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]\], -- default pattern defined by nvim-cmp; /(-?\d+(\.\d+)?|\b\w+(-\w*)*)/g as a JS regex
           keyword_length = 2,
         },
 
@@ -233,7 +364,7 @@ return {
       cmp.setup.filetype('markdown', {
         sources = cmp.config.sources({
           { name = 'latex_symbols', option = {strategy = 2} },
-          { name = 'color_names', keyword_length = 0, keyword_pattern = [[\(\\color{\)\@<=\w*]]},
+          { name = 'color_names', keyword_length = 0, keyword_pattern = [[\(\\color{\)\@<=\w*]\]}, -- remove backslash at the end to comment back in
           { name = 'luasnip' },
         }, {
           { name = 'calc' }
@@ -263,5 +394,5 @@ return {
         })
       })
     end
-  }
+  } ]]
 }

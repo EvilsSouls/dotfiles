@@ -7,12 +7,17 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
     },
+
     ---@module 'neo-tree'
     ---@type neotree.Config
     opts = {
       source_selector = {
         winbar = false,
       }
+    },
+
+    keys = {
+      { "<leader>e", function() vim.cmd('Neotree') end, desc = "Open Neotree"}
     }
   },
 

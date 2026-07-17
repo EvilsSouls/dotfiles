@@ -9,7 +9,27 @@ return {
     config = function ()
       require('nvim-treesitter').setup({})
 
-      require('nvim-treesitter').install { 'c', 'lua', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline', 'bash', 'fish', 'html', 'json', 'toml', 'javascript', 'latex', 'yaml', 'python', 'typescript', 'gitcommit' }
+      require('nvim-treesitter').install {
+        'c',
+        'lua',
+        'rust',
+        'vim',
+        'vimdoc',
+        'query',
+        'markdown',
+        'markdown_inline',
+        'bash',
+        'fish',
+        'html',
+        'json',
+        'toml',
+        'javascript',
+        'latex',
+        'yaml',
+        'python',
+        'typescript',
+        'gitcommit'
+      }
 
       -- Folds should default to open
       vim.o.foldlevelstart = 99

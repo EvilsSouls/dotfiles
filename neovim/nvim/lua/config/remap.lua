@@ -70,8 +70,8 @@ vim.keymap.set("n", "<leader>Tc", toggle_setting("cursorcolumn"), {desc = "toggl
 vim.keymap.set("n", "<leader>Tn", toggle_setting("relativenumber"), {desc = "toggle relative numbers"})
 vim.keymap.set("n", "<leader>Tw", toggle_setting("wrap"), {desc = "toggle wrapping"})
 
--- Bufferline Keybindings
-vim.keymap.set('n', 'gu', vim.cmd.BufferLinePick)
 
--- Neotree Keybindings
-vim.keymap.set("n", "<leader>e", "<Cmd>Neotree<CR>")
+-- Folding Keymaps
+
+-- Automatically opdate folds when closing all
+vim.keymap.set("n", "zM", vim.cmd('norm! zxzM'))
