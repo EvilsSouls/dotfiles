@@ -4,7 +4,7 @@ return {
     lazy = false,
     build = ':TSUpdate',
     dependencies = {
-      {'nvim-treesitter/nvim-treesitter-context', opts = {}}
+      {'nvim-treesitter/nvim-treesitter-context', opts = { max_lines = 8, mode = 'topline' }}
     },
     config = function ()
       require('nvim-treesitter').setup({})

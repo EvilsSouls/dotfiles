@@ -19,7 +19,6 @@ return {
     dependencies = {
       'saghen/blink.lib',
       'L3MON4D3/LuaSnip',
-      'onsails/lspkind.nvim',
       'nvim-tree/nvim-web-devicons',
       -- 'MahanRahmati/blink-nerdfont.nvim', -- Does not fully work with v2 apparently
     },
@@ -64,9 +63,42 @@ return {
       -- Configure luasnip as snippet engine to use with blink.cmp
       snippets = { preset = 'luasnip' },
 
+      -- Experimental Feature
+      signature = {
+        enabled = true,
+        window = {
+          -- show_documentation = false,
+          show_documentation = true -- test feature out a bit, before deciding
+        }
+      },
+
       ---@todo Configure completions to more easily separate different kinds of sources, different columns, etc.
-      ---@todo investigate whether lspkind is actually needed
       ---@todo change color of different kind symbols coming from different sources
+
+      appearance = {
+        kind_icons = {
+          Variable = '',
+          Constructor = '󰒔',
+
+          Class = '',
+          Interface = '',
+          Struct = '',
+          Module = '󰣖',
+
+          Unit = '',
+          Value = '',
+          Enum = '󰣥',
+          EnumMember = '󱈤',
+
+          Keyword = '',
+
+          Snippet = '󰞘',
+
+          Event = '',
+          Operator = '󱁤',
+          TypeParameter = '󰫈'
+        }
+      },
 
       -- Configure Completion Menu
       completion = {
@@ -86,11 +118,9 @@ return {
                     if dev_icon then
                       icon = dev_icon
                     end
-                  else
-                    icon = require("lspkind").symbol_map[ctx.kind] or ""
                   end
 
-                  return icon .. ctx.icon_gap
+                  return icon .. " " .. ctx.icon_gap
                 end,
 
                 ---@todo Actually implement colors correctly, so that different sources / different kinds are highlighted correctly
@@ -98,7 +128,7 @@ return {
                 -- You can also add the same function for `kind.highlight` if you want to
                 -- keep the highlight groups in sync with the icons.
                 highlight = function(ctx)
-                  local hl = 'BlinkCmpKind'
+                  local hl = ctx.kind_hl
                   if vim.tbl_contains({ "Path" }, ctx.source_name) then
                     local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
                     if dev_icon then
@@ -139,7 +169,7 @@ return {
       require(plugin.name).setup(opts)
 
       vim.api.nvim_set_hl(0, "BlinkCmpSource", {link = 'Comment'})
-      vim.api.nvim_set_hl(0, "BlinkCmpKind", {link = 'OkMsg'})
+      vim.api.nvim_set_hl(0, "BlinkCmpKindText", {link = 'OkMsg'})
     end
   },
 
