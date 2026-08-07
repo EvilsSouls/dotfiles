@@ -1,18 +1,4 @@
 return {
-  {
-    'L3MON4D3/LuaSnip',
-    -- version = 'v2.*',
-    run = 'make install_jsregexp',
-
-    dependencies = {
-      'rafamadriz/friendly-snippets'
-    },
-
-    config = function()
-      require('luasnip.loaders.from_vscode').lazy_load()
-    end
-  },
-
   ---@todo Perhaps consider cmp compat
   {
     'saghen/blink.cmp',
@@ -21,6 +7,7 @@ return {
       'L3MON4D3/LuaSnip',
       'nvim-tree/nvim-web-devicons',
       -- 'MahanRahmati/blink-nerdfont.nvim', -- Does not fully work with v2 apparently
+      'becknik/blink-cmp-luasnip-choice'
     },
     build = function()
       -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
@@ -45,7 +32,23 @@ return {
       -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = { preset = 'default' },
 
-      sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+      sources = {
+        default = { 'choice', 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+          choice = {
+            name = 'LuaSnip Choice Nodes',
+            module = 'blink-cmp-luasnip-choice',
+            opts = {},
+          },
+        },
+      },
+
       -- Does not work with v2
       -- providers = {
       --   nerdfont = {
@@ -102,6 +105,10 @@ return {
 
       -- Configure Completion Menu
       completion = {
+        -- list = {
+        --   selection = { preselect = false, auto_insert = true }
+        -- },
+
         documentation = {
           auto_show = true
         },

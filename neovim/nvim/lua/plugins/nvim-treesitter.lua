@@ -1,3 +1,26 @@
+local TREESITTER_LANGUAGES = {
+  'c',
+  'lua',
+  'rust',
+  'vim',
+  'vimdoc',
+  'query',
+  'markdown',
+  'markdown_inline',
+  'bash',
+  'fish',
+  'html',
+  'json',
+  'toml',
+  'javascript',
+  'latex',
+  'yaml',
+  'python',
+  'typescript',
+  'gitcommit',
+  'typst'
+}
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -9,33 +32,13 @@ return {
     config = function ()
       require('nvim-treesitter').setup({})
 
-      require('nvim-treesitter').install {
-        'c',
-        'lua',
-        'rust',
-        'vim',
-        'vimdoc',
-        'query',
-        'markdown',
-        'markdown_inline',
-        'bash',
-        'fish',
-        'html',
-        'json',
-        'toml',
-        'javascript',
-        'latex',
-        'yaml',
-        'python',
-        'typescript',
-        'gitcommit'
-      }
+      require('nvim-treesitter').install(TREESITTER_LANGUAGES)
 
       -- Folds should default to open
       vim.o.foldlevelstart = 99
 
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'python', 'javascript', 'rust', 'markdown', 'typescript' },
+        pattern = TREESITTER_LANGUAGES,
         callback = function()
           -- Treesitter Folding
           vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'

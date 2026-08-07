@@ -16,11 +16,14 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 })
 
 -- H and L are a lot more ergonomical than ^ and 0
-vim.keymap.set("n", "H", "^")
-vim.keymap.set("n", "L", "$")
+vim.keymap.set("", "H", "^")
+vim.keymap.set("", "L", "$")
 -- Temporarily set 0 and $ to NOP, to break muscle memory
-vim.keymap.set("n", "0", "<Nop>")
-vim.keymap.set("n", "$", "<Nop>")
+vim.keymap.set("", "0", "<Nop>")
+vim.keymap.set("", "^", "<Nop>")
+vim.keymap.set("", "$", "<Nop>")
+
+vim.keymap.set("n", "0", vim.diagnostic.open_float, {desc="Open Diagnostic Float"})
 
 -- Use <Esc> to exit terminal mode
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
@@ -69,4 +72,3 @@ end
 vim.keymap.set("n", "<leader>Tc", toggle_setting("cursorcolumn"), {desc = "toggle cursor column"})
 vim.keymap.set("n", "<leader>Tn", toggle_setting("relativenumber"), {desc = "toggle relative numbers"})
 vim.keymap.set("n", "<leader>Tw", toggle_setting("wrap"), {desc = "toggle wrapping"})
-
