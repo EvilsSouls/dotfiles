@@ -1,0 +1,11 @@
+[shell.launcher.providers.calculator]
+prefix = "#"
+
+[shell.launcher.providers.emoji]
+prefix = ""
+
+[shell.launcher.dmenu.entry.ssh]
+exec = "kitty 'ssh {selection}'"
+
+[shell.launcher.providers.wallpaper]
+prefix = "wall"

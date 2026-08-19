@@ -1,0 +1,14 @@
+[theme]
+builtin = "Noctalia"
+mode = "dark"
+source = "wallpaper"
+
+[theme.templates]
+builtin_ids = [ "cava", "gtk3", "gtk4", "kcolorscheme", "niri", "qt" ]
+community_ids = [ "gimp" ]
+
+[wallpaper]
+directory = "/home/evilssouls/Pictures/Wallpapers"
+
+[wallpaper.automation]
+enabled = true

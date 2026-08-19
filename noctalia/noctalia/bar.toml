@@ -1,0 +1,66 @@
+[bar]
+order = [ "top_bar" ]
+
+[bar.top_bar]
+background_opacity = 0.8
+border_width = 1.0
+center = [ "notifications", "group:g4", "control-center" ]
+contact_shadow = true
+end = [ "group:g3", "group:g1", "group:g2", "drawer" ]
+start = [ "launcher", "tray", "workspaces" ]
+widget_spacing = 12
+
+[[bar.top_bar.capsule_group]]
+enabled = true
+fill = "surface_variant"
+id = "g1"
+members = [ "network", "bluetooth" ]
+opacity = 1.0
+padding = 6.0
+
+[[bar.top_bar.capsule_group]]
+enabled = true
+fill = "surface_variant"
+id = "g2"
+members = [ "battery", "power_profile", "session" ]
+opacity = 1.0
+padding = 6.0
+
+[[bar.top_bar.capsule_group]]
+enabled = true
+fill = "surface_variant"
+id = "g3"
+members = [ "volume", "media", "audio_visualizer" ]
+opacity = 1.0
+padding = 6.0
+
+[[bar.top_bar.capsule_group]]
+border = ""
+enabled = true
+fill = "surface_variant"
+id = "g4"
+members = [ "clock", "active_window", "weather" ]
+opacity = 1.0
+padding = 10.0
+
+[widget.active_window]
+max_length = 150
+
+[widget.clock]
+format = "{:%a %H:%M}"
+tooltip_format = "{:%c}"
+
+[widget.drawer]
+type = "custom_button"
+
+[widget.media]
+max_length = 100
+
+[widget.network]
+show_label = false
+
+[widget.tray]
+capsule = true
+
+[widget.weather]
+show_condition = false

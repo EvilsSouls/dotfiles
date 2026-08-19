@@ -15,7 +15,7 @@ binds {
 
   // Suggested binds for running programs: terminal, app launcher, screen locker.
   Mod+A              hotkey-overlay-title="Open a Terminal: Kitty" { spawn "kitty"; }
-  Mod+Shift+A        hotkey-overlay-title="Open a Terminal: Kitty" { spawn-sh "kitty -T 'Temp Cat' fish -C 'set -g fish_greeting'"; }
+  Mod+Ctrl+A         hotkey-overlay-title="Open a Terminal: Kitty" { spawn-sh "kitty -T 'Temp Cat' fish -C 'set -g fish_greeting'"; }
   Mod+X              hotkey-overlay-title="Open Password Manager: KeePassXC" { spawn "keepassxc"; }
   Mod+E              hotkey-overlay-title="Open File Manager: Yazi" { spawn "kitty yazi"; }
 
@@ -26,9 +26,11 @@ binds {
   Mod+B              hotkey-overlay-title="Open bluetooth settings" { spawn "noctalia" "msg" "panel-toggle" "control-center" "bluetooth"; }
   Mod+Ctrl+W         hotkey-overlay-title="Open noctalia wallpaper panel" { spawn-sh "noctalia msg panel-toggle wallpaper"; }
   Mod+Ctrl+E         hotkey-overlay-title="Randomly choose new wallpaper" { spawn-sh "noctalia msg wallpaper-random"; }
-  // TODO: Set Lock Screen
-  Super+Ctrl+L       hotkey-overlay-title="Lock the Screen: noctalia" { spawn "noctalia" "msg" "session" "lock"; }
-  Super+Shift+Ctrl+L hotkey-overlay-title="Lock and Suspend: noctalia" { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+
+  // Power Keybinds
+  XF86PowerOff             { spawn "noctalia" "msg" "panel-toggle" "session"; }
+  Mod+Ctrl+Backspace       hotkey-overlay-title="Lock the Screen: noctalia" { spawn "noctalia" "msg" "session" "lock"; }
+  Mod+Shift+Backspace hotkey-overlay-title="Lock and Suspend: noctalia" { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 
   // TODO: Easily Access Settings (or perhaps not... instead use text file)
   // TODO: Easily access wallpaper
