@@ -13,6 +13,7 @@ return {
     opts = {
       source_selector = {
         winbar = false,
+        truncation_character = "..."
       }
     },
 

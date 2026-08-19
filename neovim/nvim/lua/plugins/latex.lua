@@ -6,6 +6,8 @@ return {
     init = function()
       vim.g.vimtex_view_method = 'zathura_simple'
 
+      local au_group = vim.api.nvim_create_augroup("vimtex_events", {})
+
       -- Cleanup on quit
       vim.api.nvim_create_autocmd("User", {
         pattern = "VimtexEventQuit",

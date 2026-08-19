@@ -71,7 +71,7 @@ return {
         if current_options.on_colors_backup == nil then
           vim.notify("Set background back to normal")
           current_options.on_colors_backup = current_options.on_colors
-          current_options.on_colors = function(colors) end
+          current_options.on_colors = function() end
         else
           vim.notify("Darkened the background")
           current_options.on_colors = current_options.on_colors_backup

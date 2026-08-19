@@ -3,9 +3,8 @@ GREEK_SYMBOLS = {
   "beta",
   "gamma",
   "delta",
-  "epsilon",
+  {"epsilon", "eta"},
   "zeta",
-  "eta",
   "theta",
   "iota",
   "kappa",
@@ -14,27 +13,50 @@ GREEK_SYMBOLS = {
   "nu",
   "xi",
   "omicron",
-  "pi",
+  {"pi", "phi", "psi"},
   "rho",
   "sigma",
   "tau",
   "upsilon",
-  "phi",
   "chi",
-  "psi",
   "omega"
 }
 
 local function returnGreekSymbolSnippet(letter)
-  local lowerCaseSnippet = s(
-    {trig=";" .. string.sub(letter, 1, 1), snippetType="autosnippet"},
-    {t(letter)}
-  )
+  local lowerCaseSnippet
+  local upperCaseSnippet
 
-  local upperCaseSnippet = s(
-    {trig=";" .. string.upper(string.sub(letter, 1, 1)), snippetType="autosnippet"},
-    {t(string.upper(string.sub(letter, 1,1)) .. string.sub(letter, 2))}
-  )
+  if type(letter) == "string" then
+    lowerCaseSnippet = s(
+      {trig=";" .. string.sub(letter, 1, 1), snippetType="autosnippet"},
+      {t(letter)}
+    )
+
+    upperCaseSnippet = s(
+      {trig=";" .. string.upper(string.sub(letter, 1, 1)), snippetType="autosnippet"},
+      {t(string.upper(string.sub(letter, 1, 1)) .. string.sub(letter, 2))}
+    )
+  elseif type(letter) == "table" then
+    local lower_case_choices = {}
+    local upper_case_choices = {}
+
+    for index = 1, #letter do
+      lower_case_choices[index] = {t(letter[index]), i(1)}
+      upper_case_choices[index] = {t(string.upper(string.sub(letter[index], 1, 1)) .. string.sub(letter[index], 2)), i(1)}
+      -- lower_case_choices[index] = t(letter[index])
+      -- upper_case_choices[index] = t(string.upper(string.sub(letter[index], 1, 1)) .. string.sub(letter[index], 2))
+    end
+
+    lowerCaseSnippet = s(
+      {trig=";" .. string.sub(letter[1], 1, 1), snippetType="autosnippet"},
+      {c(1, lower_case_choices)}
+    )
+
+    upperCaseSnippet = s(
+      {trig=";" .. string.upper(string.sub(letter[1], 1, 1)), snippetType="autosnippet"},
+      {c(1, upper_case_choices)}
+    )
+  end
 
   return lowerCaseSnippet, upperCaseSnippet
 end

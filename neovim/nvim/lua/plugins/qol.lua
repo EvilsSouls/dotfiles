@@ -1,13 +1,5 @@
 return {
   {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true
-    -- use opts = {} for passing setup options
-    -- this is equivalent to setup({}) function
-  },
-
-  {
     "folke/which-key.nvim",
     config = function ()
       local wk = require('which-key')
@@ -17,9 +9,9 @@ return {
 
         ---@type wk.Spec
         spec = {
-          { "<leader>T", group = "Options", icon = {icon=" ", color=azure}},
-          { "<leader>f", group = "Fuzzy Finding", icon = {icon="󰭎 ", color=purple}},
-          { "<leader>?", group = "Which Key", icon = {icon=" ", color=cyan}}
+          { "<leader>T", group = "Options", icon = {icon=" ", color="azure"}},
+          { "<leader>f", group = "Fuzzy Finding", icon = {icon="󰭎 ", color="purple"}},
+          { "<leader>?", group = "Which Key", icon = {icon=" ", color="cyan"}}
         },
 
         icons = {
@@ -70,6 +62,7 @@ return {
   {
     "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
     config = function ()
+      ---@module "rainbow-delimiters"
       ---@type rainbow_delimiters.config
       vim.g.rainbow_delimiters = {
         strategy = {

@@ -8,6 +8,11 @@ return {
     ---@type fzf-lua.Config|{}
     ---@diagnostic disable: missing-fields
     opts = {},
+    config = function(plugin, opts)
+      require(plugin.name).setup(opts)
+
+      require(plugin.name).register_ui_select()
+    end,
     ---@diagnostic enable: missing-fields
     keys = {
       -- fzf keybindings
