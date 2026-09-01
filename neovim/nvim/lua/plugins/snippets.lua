@@ -1,4 +1,5 @@
 return {
+
   'L3MON4D3/LuaSnip',
   -- enabled = false,
   -- version = 'v2.*',
@@ -50,5 +51,10 @@ return {
 
     require('luasnip.loaders.from_vscode').lazy_load()
     require('luasnip.loaders.from_lua').lazy_load({paths = "./lua/snippets/"})
-  end
+  end,
+
+  keys = {
+    {'<Leader>Lr', function() require('luasnip.loaders.from_lua').load({paths = "./lua/snippets/"}) end, desc="Reload Lua Snippets"},
+    {'<Leader>Le', function() require('luasnip.loaders').edit_snippet_files() end, desc="Edit Snippets"}
+  }
 }

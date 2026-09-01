@@ -50,6 +50,7 @@ return {
 
       local isInsideMarkup = require('utils.typst').isInsideMarkup
       local isInsideMath = require('utils.typst').isInsideMath
+      local isInsideCode = require('utils.typst').isInsideCode
       npairs.add_rules({
         Rule('$', '$', 'typst'):with_pair(isInsideMarkup)
                                :with_move(isInsideMath)
@@ -65,7 +66,7 @@ return {
         Rule('_', '_', 'typst'):with_pair(isInsideMarkup)
                                :with_move(ts_conds.is_ts_node('emph')),
 
-        Rule('<', '>', 'typst'):with_pair(isInsideMarkup)
+        Rule('<', '>', 'typst'):with_pair(function() return isInsideMarkup() or isInsideCode() end)
                                :with_move(ts_conds.is_ts_node('label'))
       })
 
