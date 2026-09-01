@@ -17,7 +17,10 @@ binds {
   Mod+A              hotkey-overlay-title="Open a Terminal: Kitty" { spawn "kitty"; }
   Mod+Ctrl+A         hotkey-overlay-title="Open a Terminal: Kitty" { spawn-sh "kitty -T 'Temp Cat' fish -C 'set -g fish_greeting'"; }
   Mod+X              hotkey-overlay-title="Open Password Manager: KeePassXC" { spawn "keepassxc"; }
-  Mod+E              hotkey-overlay-title="Open File Manager: Yazi" { spawn "kitty yazi"; }
+  Mod+Ctrl+X         hotkey-overlay-title="Open Calculator: Numbat" { spawn "kitty" "numbat"; }
+  Mod+Shift+X        hotkey-overlay-title="Open Floating Calculator: Numbat" { spawn-sh "kitty -T 'Temp Cat' numbat"; }
+  Mod+E              hotkey-overlay-title="Open Editor: Neovide" { spawn "neovide"; }
+  Mod+Ctrl+E         hotkey-overlay-title="Open File Manager: Yazi" { spawn "kitty" "yazi"; }
 
   Mod+D              hotkey-overlay-title="Open launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
   Mod+Shift+C        hotkey-overlay-title="Open clipboard" { spawn-sh "noctalia msg panel-toggle clipboard"; }
@@ -25,7 +28,7 @@ binds {
   Mod+Ctrl+Space     hotkey-overlay-title="Open noctalia settings" { spawn-sh "noctalia msg settings-toggle"; }
   Mod+B              hotkey-overlay-title="Open bluetooth settings" { spawn "noctalia" "msg" "panel-toggle" "control-center" "bluetooth"; }
   Mod+Ctrl+W         hotkey-overlay-title="Open noctalia wallpaper panel" { spawn-sh "noctalia msg panel-toggle wallpaper"; }
-  Mod+Ctrl+E         hotkey-overlay-title="Randomly choose new wallpaper" { spawn-sh "noctalia msg wallpaper-random"; }
+  Mod+Shift+W         hotkey-overlay-title="Randomly choose new wallpaper" { spawn-sh "noctalia msg wallpaper-random"; }
 
   // Power Keybinds
   XF86PowerOff             { spawn "noctalia" "msg" "panel-toggle" "session"; }

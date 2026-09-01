@@ -35,3 +35,6 @@ unbindurl lichess.org m
 " TODO: Perhaps find a way to rebind ' to match vim
 unbind `
 bind n gobble 1 markjump
+
+" Use to toggle Sidebar instead
+unbind <C-e>

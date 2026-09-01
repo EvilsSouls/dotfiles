@@ -39,7 +39,11 @@ return {
 
   {
     'numToStr/Comment.nvim',
-    opts = {}
+    event = 'FileType',
+    opts = {},
+    keys = {
+      {'<leader>/', function() vim.cmd('norm gcc') end, desc='Comment out current Line' }
+    }
   },
 
   {

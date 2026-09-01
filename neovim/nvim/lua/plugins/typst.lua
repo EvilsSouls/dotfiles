@@ -11,6 +11,8 @@ return {
     opts = {
       open_cmd = 'qutebrowser --target private-window %s',
 
+      invert_colors = 'auto',
+
       dependencies_bin = {
         tinymist = 'tinymist'
       }

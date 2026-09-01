@@ -1,3 +1,5 @@
 [plugins]
 enabled = []
+auto_update = "all"
+
 

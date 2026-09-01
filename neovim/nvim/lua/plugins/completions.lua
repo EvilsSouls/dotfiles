@@ -2,7 +2,7 @@ return {
   ---@todo Perhaps consider cmp compat
   {
     'saghen/blink.cmp',
-    enabled = false,
+    -- enabled = false,
     dependencies = {
       'saghen/blink.lib',
       'L3MON4D3/LuaSnip',
