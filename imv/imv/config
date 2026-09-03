@@ -1,0 +1,6 @@
+[options]
+background = #00000099
+
+[binds]
+<Ctrl+e> = exec ~/.config/imv/manage-dark-mode.fish
+<Ctrl+t> = exec ~/.config/imv/manage-transparency.fish

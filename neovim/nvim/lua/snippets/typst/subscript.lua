@@ -1,12 +1,36 @@
 local isInsideMath = require('utils.typst').isInsideMath
 local jsregexp_compile_safe = require("luasnip.util.jsregexp")
 
+---@todo Very often the triggers have been waaaay to overcomplicated.
+--- Like... can't I literally just use brackets *every single time* I
+--- press `_`? Or what about the snippet transform v12 into v_(1). Are
+--- The Brackets really necessary? Not to mention the horrible spaghetti
+--- that is escaping out of the bracket
+
 return {
   s(
     {
-      trig        = '(%a)([0-9n])',
+      trig        = '([ $][^%s]-)([_^])',
       snippetType = 'autosnippet',
-      dscr        = 'Automatically transforms digits after variable into indices.',
+      dscr        = 'Automatically inserts braces when entering sub- or supscript mode',
+      trigEngine  = 'pattern',
+      condition   = isInsideMath
+    },
+    fmt(
+      "{}{}({})",
+      {
+        f(function(_, parent, _) return parent.captures[1] end),
+        f(function(_, parent, _) return parent.captures[2] end),
+        i(1)
+      }
+    )
+  ),
+
+  s(
+    {
+      trig        = '(%a+[)}]*)([0-9])',
+      snippetType = 'autosnippet',
+      dscr        = 'Automatically transforms digits after variables into indices.',
       trigEngine  = 'pattern',
       condition   = isInsideMath
     },
@@ -22,7 +46,7 @@ return {
 
   s(
     {
-      trig        = '([a-zA-Z])_\\(([a-zA-Z\\d]+) ',
+      trig        = '([a-zA-Z])([_^])\\(([a-zA-Z\\d]+) ',
       snippetType = 'autosnippet',
       dscr        = 'Automatically escapes a subscript expression',
       -- Basically almost a one-to-one copy of the built-in ecma trigger engine, with the exception of
@@ -71,22 +95,19 @@ return {
         end
       end,
       trigEngineOpts = {
-        pos_lookahead = "\\)( \\S.*)?$"
+        pos_lookahead = "\\)(( \\S.*)?|([)$]))$"
       },
-      condition = function ()
-        vim.notify("Snippet Triggered")
-
-        return isInsideMath()
-      end
+      condition = isInsideMath
     },
 
     fmt(
-      "{}_({}) {}{}",
+      "{}{}({}) {}{}",
       {
         f(function(_, parent, _) return parent.captures[1] end),
         f(function(_, parent, _) return parent.captures[2] end),
+        f(function(_, parent, _) return parent.captures[3] end),
         i(0),
-        f(function(_, parent, _) return parent.captures[3] end)
+        f(function(_, parent, _) return parent.captures[4] end)
       }
     )
   )

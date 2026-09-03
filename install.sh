@@ -8,6 +8,7 @@ stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" neovide
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" tridactyl
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" fastfetch
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" bat
+stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" imv
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" alacritty
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" thefuck
 stow --dotfiles --dir="$HOME/dotfiles/" --target="$HOME/.config/" starship

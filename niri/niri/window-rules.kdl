@@ -54,6 +54,21 @@ window-rule {
 }
 
 window-rule {
+  match app-id=r#"^imv$"#
+  background-effect {
+    blur true
+  }
+}
+
+window-rule {
+  match title="Enter LaTeX Formula - TexText 1.13.0"
+  open-floating true
+
+  default-column-width { proportion 0.5; }
+  default-window-height { proportion 0.5; }
+}
+
+window-rule {
   geometry-corner-radius 12
   clip-to-geometry true
 }
