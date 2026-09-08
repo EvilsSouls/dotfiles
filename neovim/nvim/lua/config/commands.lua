@@ -29,3 +29,19 @@ vim.api.nvim_create_user_command('GitBlameLine', function()
   local filename = vim.api.nvim_buf_get_name(0)
   print(vim.fn.system({ 'git', 'blame', '-L', line_number .. ',+1', filename }))
 end, { desc = 'Print the git blame for the current line' })
+
+vim.cmd([[
+function! s:Capture(bang, cmd)
+  let message = execute(a:cmd)
+
+  if a:bang
+    new
+    setlocal buftype=nofile bufhidden=hide noswapfile
+  endif
+
+  call append('.', split(message, '\r\?\n'))
+  redraw!
+endfunction
+
+command! -bang -nargs=+ -complete=command Capture call <SID>Capture("<bang>" == '!', <q-args>)
+]])

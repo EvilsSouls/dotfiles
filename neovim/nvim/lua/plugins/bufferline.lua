@@ -11,15 +11,15 @@ return {
           mode = 'tabs',
           diagnostics = 'nvim_lsp',
           separator_style = 'slope',
-          numbers = function (opts)
+          numbers = function(opts)
             return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
-          end
-        }
+          end,
+        },
       }
     end,
 
     keys = {
-      {'gu', vim.cmd.BufferLinePick, desc = "Change Tabs"}
-    }
-  }
+      { 'gu', vim.cmd.BufferLinePick, desc = 'Change Tabs' },
+    },
+  },
 }

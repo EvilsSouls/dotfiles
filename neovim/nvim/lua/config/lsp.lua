@@ -1,23 +1,17 @@
--- Only use Ruff as a formatter
-vim.lsp.config('ruff', {
-  init_options = {
-    settings = {
-      lint = {
-        enable = false
-      }
-    }
-  }
-})
+---@todo Use Conform.nvim for formatter configuration
+---@todo Consider instead creating a folder and configuring each of the lsps in files that are named after the LSP inside that folder
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"Python"},
-  callback = function()
-    vim.bo[0].formatexpr = "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})"
-  end
+vim.lsp.config('tinymist', {
+  settings = {
+    formatterMode = 'typstyle',
+    formatterProseWrap = true, -- wrap lines in content mode
+    formatterPrintWidth = 80, -- limit line length to 80 if possible
+    formatterIndentSize = 2, -- indentation width
+  },
 })
 
 -- [[ Configure Diagnostics ]]
-vim.diagnostic.config{
+vim.diagnostic.config {
   -- virtual_text=true
   signs = {
     text = {
@@ -25,6 +19,6 @@ vim.diagnostic.config{
       [vim.diagnostic.severity.WARN] = '',
       [vim.diagnostic.severity.HINT] = '󰌵',
       [vim.diagnostic.severity.INFO] = '󰋼',
-    }
-  }
+    },
+  },
 }

@@ -19,7 +19,8 @@ local TREESITTER_LANGUAGES = {
   'typescript',
   'gitcommit',
   'typst',
-  'kdl'
+  'kdl',
+  'ron'
 }
 
 return {
