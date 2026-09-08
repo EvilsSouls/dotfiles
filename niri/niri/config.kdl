@@ -161,7 +161,7 @@ layout {
     // off
 
     // How many logical pixels the ring extends out from the windows.
-    width 1
+    width 0.5
 
     // Colors can be set in a variety of ways:
     // - CSS named colors: "red"
@@ -313,6 +313,8 @@ animations {
 }
 
 include "window-rules.kdl"
+include "layer-rules.kdl"
+include "startup.kdl"
 include "binds.kdl"
 include "noctalia.kdl"
 include "noctalia-config.kdl"

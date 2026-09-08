@@ -1,0 +1,3 @@
+spawn-at-startup "vicinae" "server"
+spawn-sh-at-startup "wl-paste --watch cliphist store"
+spawn-at-startup "niri-screenshot-tools"

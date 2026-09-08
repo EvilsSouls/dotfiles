@@ -22,7 +22,7 @@ binds {
   Mod+E              hotkey-overlay-title="Open Editor: Neovide" { spawn "neovide"; }
   Mod+Ctrl+E         hotkey-overlay-title="Open File Manager: Yazi" { spawn "kitty" "yazi"; }
 
-  Mod+D              hotkey-overlay-title="Open launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+  Mod+D              hotkey-overlay-title="Open launcher" { spawn-sh "fuzzel"; }
   Mod+Shift+C        hotkey-overlay-title="Open clipboard" { spawn-sh "noctalia msg panel-toggle clipboard"; }
   Mod+Space          hotkey-overlay-title="Open control center" { spawn-sh "noctalia msg panel-toggle control-center"; }
   Mod+Ctrl+Space     hotkey-overlay-title="Open noctalia settings" { spawn-sh "noctalia msg settings-toggle"; }
@@ -231,9 +231,10 @@ binds {
   // Mod+Space       { switch-layout "next"; }
   // Mod+Shift+Space { switch-layout "prev"; }
 
-  Print { screenshot; }
-  Ctrl+Print { screenshot-screen; }
+  Print { screenshot-screen; }
+  Ctrl+Print { screenshot; }
   Alt+Print { screenshot-window; }
+  Shift+Print { spawn-sh "hyprpicker | wl-copy"; }
 
   // Applications such as remote-desktop clients and software KVM switches may
   // request that niri stops processing the keyboard shortcuts defined here
