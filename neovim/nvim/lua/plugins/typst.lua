@@ -9,18 +9,28 @@ return {
     ft = 'typst',
     version = '1.*',
     opts = {
-      open_cmd = 'qutebrowser --target private-window %s',
+      open_cmd = 'qutebrowser --target private-window ":open --private %s ;; close"',
 
       invert_colors = 'auto',
 
       dependencies_bin = {
-        tinymist = 'tinymist'
-      }
+        tinymist = 'tinymist',
+      },
     },
     keys = {
-      { "<localleader>tt", "<cmd>TypstPreviewToggle<cr>", desc = "Toggle the Typst Preview" },
-      { "<localleader>tc", toggle_typst_preview_follow_cursor, desc = "Toggle automatic synchronisation of preview and editor position" },
-      { "<localleader>ts", function() require('typst-preview').sync_with_cursor() end, desc = "Sync position of preview and editor"}
+      { '<localleader>tt', '<cmd>TypstPreviewToggle<cr>', desc = 'Toggle the Typst Preview' },
+      {
+        '<localleader>tc',
+        toggle_typst_preview_follow_cursor,
+        desc = 'Toggle automatic synchronisation of preview and editor position',
+      },
+      {
+        '<localleader>ts',
+        function()
+          require('typst-preview').sync_with_cursor()
+        end,
+        desc = 'Sync position of preview and editor',
+      },
     },
   },
 
@@ -29,15 +39,15 @@ return {
     enabled = false,
     ft = { 'tex', 'latex,', 'typst' },
     opts = {
-      filetypes = { 'tex', 'latex', 'typst'},
+      filetypes = { 'tex', 'latex', 'typst' },
       filetype_symbols = {
         typst = {
           math = {
-            { pattern = 'alpha', replacement = 'α' }
-          }
-        }
+            { pattern = 'alpha', replacement = 'α' },
+          },
+        },
       },
-      unprettify_at_point = 'line'
-    }
-  }
+      unprettify_at_point = 'line',
+    },
+  },
 }

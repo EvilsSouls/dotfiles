@@ -54,9 +54,33 @@ return {
       local cond = require('nvim-autopairs.conds')
       local ts_conds = require('nvim-autopairs.ts-conds')
 
-      local isInsideMarkup = require('utils.typst').isInsideMarkup
-      local isInsideMath = require('utils.typst').isInsideMath
-      local isInsideCode = require('utils.typst').isInsideCode
+      ---@module 'nvim-autopairs'
+      ---@param opts CondOpts
+      local function isInsideMarkup(opts)
+        return require('utils.typst').isInsideMarkup(
+          opts.bufnr,
+          { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
+        )
+      end
+
+      ---@module 'nvim-autopairs'
+      ---@param opts CondOpts
+      local function isInsideMath(opts)
+        return require('utils.typst').isInsideMath(
+          opts.bufnr,
+          { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
+        )
+      end
+
+      ---@module 'nvim-autopairs'
+      ---@param opts CondOpts
+      local function isInsideCode(opts)
+        return require('utils.typst').isInsideCode(
+          opts.bufnr,
+          { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
+        )
+      end
+
       npairs.add_rules {
         Rule('$', '$', 'typst'):with_pair(isInsideMarkup):with_move(isInsideMath):with_cr(isInsideMath),
 
@@ -69,8 +93,8 @@ return {
 
         Rule('_', '_', 'typst'):with_pair(isInsideMarkup):with_move(ts_conds.is_ts_node('emph')),
 
-        Rule('<', '>', 'typst'):with_pair(function()
-          return isInsideMarkup() or isInsideCode()
+        Rule('<', '>', 'typst'):with_pair(function(opts)
+          return isInsideMarkup(opts) or isInsideCode(opts)
         end):with_move(ts_conds.is_ts_node('label')),
       }
 

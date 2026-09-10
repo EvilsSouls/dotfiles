@@ -1,39 +1,39 @@
 return {
   {
-    "folke/which-key.nvim",
-    config = function ()
+    'folke/which-key.nvim',
+    config = function()
       local wk = require('which-key')
 
-      wk.setup({
-        preset = "helix",
+      wk.setup {
+        preset = 'helix',
 
         ---@type wk.Spec
         spec = {
-          { "<leader>T", group = "Options", icon = {icon=" ", color="azure"}},
-          { "<leader>f", group = "Fuzzy Finding", icon = {icon="󰭎 ", color="purple"}},
-          { "<leader>?", group = "Which Key", icon = {icon=" ", color="cyan"}}
+          { '<leader>t', group = 'Options', icon = { icon = ' ', color = 'azure' } },
+          { '<leader>F', group = 'Fuzzy Finding', icon = { icon = '󰭎 ', color = 'purple' } },
+          { '<leader>f', group = 'File', icon = { icon = ' ', color = 'blue' } },
+          { '<leader>e', group = 'Editor', icon = { icon = ' ', color = 'green' } },
+          { '<leader>s', group = 'Session', icon = { icon = ' ', color = 'red' } },
+          { '<leader>p', group = 'Project', icon = { icon = ' ', color = 'orange' } },
+          { '<leader>?', group = 'Which Key', icon = { icon = ' ', color = 'cyan' } },
         },
 
         icons = {
           keys = {
-            C = "󰯱 ",
-            M = "󰯫 ",
-            D = "󰌽 "
-          }
-        }
-      })
+            C = '󰯱 ',
+            M = '󰯫 ',
+            D = '󰌽 ',
+          },
+        },
+      }
 
-      vim.keymap.set(
-        'n', '<leader>?g',
-        function() require("which-key").show() end,
-        {desc="Show Keybindings"}
-      )
+      vim.keymap.set('n', '<leader>?g', function()
+        require('which-key').show()
+      end, { desc = 'Show Keybindings' })
 
-      vim.keymap.set(
-        'n', '<leader>?l',
-        function() require("which-key").show({global=false}) end,
-        {desc="Show Buffer-Specific Keybindings"}
-      )
+      vim.keymap.set('n', '<leader>?l', function()
+        require('which-key').show { global = false }
+      end, { desc = 'Show Buffer-Specific Keybindings' })
     end,
   },
 
@@ -42,30 +42,36 @@ return {
     event = 'FileType',
     opts = {},
     keys = {
-      {'<leader>/', function() vim.cmd('norm gcc') end, desc='Comment out current Line' }
-    }
+      {
+        '<C-/>',
+        function()
+          vim.cmd('norm gcc')
+        end,
+        desc = 'Comment out current Line',
+      },
+    },
   },
 
   {
-    "windwp/nvim-ts-autotag",
+    'windwp/nvim-ts-autotag',
     opts = {
-      enable_rename = false
-    }
+      enable_rename = false,
+    },
   },
 
   {
-    "kylechui/nvim-surround",
-    event = "VeryLazy",
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
     config = function()
-      require("nvim-surround").setup({
+      require('nvim-surround').setup {
         -- Configuration here, or leave empty to use defaults
-      })
-    end
+      }
+    end,
   },
 
   {
-    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-    config = function ()
+    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim',
+    config = function()
       ---@module "rainbow-delimiters"
       ---@type rainbow_delimiters.config
       vim.g.rainbow_delimiters = {
@@ -91,49 +97,53 @@ return {
           'RainbowDelimiterCyan',
         },
       }
-    end
+    end,
   },
 
   {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
     --- @module "ibl"
     --- @type ibl.config
     opts = {
       indent = {
-        char = "▏"
-      }
-    }
+        char = '▏',
+      },
+    },
   },
 
   {
     'catgoose/nvim-colorizer.lua',
-    event = "BufReadPre",
+    event = 'BufReadPre',
     opts = {
       filetypes = {
-        "*",
+        '*',
+        '!typst',
         css = { css = true },
         html = { tailwind = true, css = true },
-        scss = { css = true, scss = true, }
+        scss = { css = true, scss = true },
       },
 
       options = {
         parsers = {
-          hex = {rrggbbaa = true},
-          xterm = {enable = true},
-          xcolor = {enable = true},
-          css_var = {parsers = {
-            css = true,
-            css_fn = true,
-            css_color = true
-          }},
+          hex = { rrggbbaa = true },
+          xterm = { enable = true },
+          xcolor = { enable = true },
+          css_var = {
+            parsers = {
+              css = true,
+              css_fn = true,
+              css_color = true,
+            },
+          },
         },
 
         display = {
-          mode = { "virtualtext", "underline" },
-          virtualtext = { position = "before", char = "󱓻"}
+          mode = { 'virtualtext', 'underline' },
+          virtualtext = { position = 'before', char = '󱓻' },
+          disable_document_color = false, -- keep vim.lsp.document_color active
         },
-      }
+      },
 
       --[[ css = {
         mode = 'foreground',
@@ -149,14 +159,14 @@ return {
         rgb_fn = true,
         hsl_fn = true,
       } ]]
-    }
+    },
   },
 
   {
     'https://github.com/nvzone/minty',
-    dependencies = {'nvchad/volt'},
-    cmd = { "Shades", "Huefy" },
+    dependencies = { 'nvchad/volt' },
+    cmd = { 'Shades', 'Huefy' },
   },
 
-  {'mluders/comfy-line-numbers.nvim', opts = {}},
+  { 'mluders/comfy-line-numbers.nvim', opts = {} },
 }

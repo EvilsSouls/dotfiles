@@ -6,7 +6,7 @@ return {
   run = 'make install_jsregexp',
 
   dependencies = {
-    'rafamadriz/friendly-snippets'
+    'rafamadriz/friendly-snippets',
   },
 
   config = function()
@@ -20,7 +20,7 @@ return {
       update_events = 'TextChanged,TextChangedI',
 
       -- Use Tab to trigger visual selection
-      store_selection_keys = '<Tab>'
+      store_selection_keys = '<Tab>',
     }
 
     --[[ vim.keymap.set({ "i" }, "<C-y>", function() ls.expand() end, { silent = true })
@@ -50,11 +50,23 @@ return {
     ) ]]
 
     require('luasnip.loaders.from_vscode').lazy_load()
-    require('luasnip.loaders.from_lua').lazy_load({ paths = './lua/snippets/' })
+    require('luasnip.loaders.from_lua').lazy_load { paths = './lua/snippets/' }
   end,
 
   keys = {
-    { '<Leader>Lr', function() require('luasnip.loaders.from_lua').load({ paths = "./lua/snippets/" }) end, desc = "Reload Lua Snippets" },
-    { '<Leader>Le', function() require('luasnip.loaders').edit_snippet_files() end,                         desc = "Edit Snippets" }
-  }
+    {
+      '<Leader>Lr',
+      function()
+        require('luasnip.loaders.from_lua').load { paths = './lua/snippets/' }
+      end,
+      desc = 'Reload Lua Snippets',
+    },
+    {
+      '<Leader>Le',
+      function()
+        require('luasnip.loaders').edit_snippet_files()
+      end,
+      desc = 'Edit Snippets',
+    },
+  },
 }

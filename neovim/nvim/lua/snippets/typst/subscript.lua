@@ -1,5 +1,8 @@
-local isInsideMath = require('utils.typst').isInsideMath
-local jsregexp_compile_safe = require("luasnip.util.jsregexp")
+-- A wrapper function is required to ignore the passed arguments
+local function isInsideMath()
+  require('utils.typst').isInsideMath()
+end
+local jsregexp_compile_safe = require('luasnip.util.jsregexp')
 
 ---@todo Very often the triggers have been waaaay to overcomplicated.
 --- Like... can't I literally just use brackets *every single time* I
@@ -10,15 +13,15 @@ local jsregexp_compile_safe = require("luasnip.util.jsregexp")
 -- Basically almost a one-to-one copy of the built-in ecma trigger engine, with the exception of
 -- using the entire line --- not just the line up to the cursor
 local function pos_lookahead_trig_engine(trigger, opts)
-  local trig_compiled, err_maybe = jsregexp_compile_safe(trigger .. "$", "")
+  local trig_compiled, err_maybe = jsregexp_compile_safe(trigger .. '$', '')
   if not trig_compiled then
-    error(("Error while compiling regex: %s"):format(err_maybe))
+    error(('Error while compiling regex: %s'):format(err_maybe))
   end
 
   local pos_lookahead = opts.pos_lookahead
-  local pos_lookahead_trig_compiled, pos_lookahead_err_maybe = jsregexp_compile_safe(pos_lookahead, "")
+  local pos_lookahead_trig_compiled, pos_lookahead_err_maybe = jsregexp_compile_safe(pos_lookahead, '')
   if not pos_lookahead_trig_compiled then
-    error(("Error while compiling regex: %s"):format(pos_lookahead_err_maybe))
+    error(('Error while compiling regex: %s'):format(pos_lookahead_err_maybe))
   end
 
   return function(line_to_cursor, _)
@@ -37,7 +40,7 @@ local function pos_lookahead_trig_engine(trigger, opts)
         end
 
         for _, capture in ipairs(pos_lookahead_match) do
-          groups[#groups+1] = capture
+          groups[#groups + 1] = capture
         end
 
         groups.pos_lookahead_match = pos_lookahead_match[0]
@@ -51,68 +54,70 @@ local function pos_lookahead_trig_engine(trigger, opts)
   end
 end
 
-
 return {
   s(
     {
-      trig        = '([ $][^%s]-)([_^])',
+      trig = '([ $][^%s]-)([_^])',
       snippetType = 'autosnippet',
-      dscr        = 'Automatically inserts braces when entering sub- or supscript mode',
-      trigEngine  = 'pattern',
-      condition   = isInsideMath
+      dscr = 'Automatically inserts braces when entering sub- or supscript mode',
+      trigEngine = 'pattern',
+      condition = isInsideMath,
     },
-    fmt(
-      "{}{}({})",
-      {
-        f(function(_, parent, _) return parent.captures[1] end),
-        f(function(_, parent, _) return parent.captures[2] end),
-        i(1)
-      }
-    )
+    fmt('{}{}({})', {
+      f(function(_, parent, _)
+        return parent.captures[1]
+      end),
+      f(function(_, parent, _)
+        return parent.captures[2]
+      end),
+      i(1),
+    })
   ),
 
   s(
     {
-      trig           = '([ $]\\S+)_\\((\\S+)\\^',
-      snippetType    = 'autosnippet',
-      dscr           = 'Automatically escapes subscript when entering a hat to allow for easy entering of powers',
-      trigEngine     = pos_lookahead_trig_engine,
+      trig = '([ $]\\S+)_\\((\\S+)\\^',
+      snippetType = 'autosnippet',
+      dscr = 'Automatically escapes subscript when entering a hat to allow for easy entering of powers',
+      trigEngine = pos_lookahead_trig_engine,
       trigEngineOpts = {
-        pos_lookahead   = '\\)'
+        pos_lookahead = '\\)',
       },
-      condition      = function ()
-        vim.notify("I have been triggered!")
+      condition = function()
+        vim.notify('I have been triggered!')
 
         return isInsideMath()
       end,
-      priority       = 1100
+      priority = 1100,
     },
-    fmt(
-      "{}_({})^({})",
-      {
-        f(function(_, parent, _) return parent.captures[1] end),
-        f(function(_, parent, _) return parent.captures[2] end),
-        i(1)
-      }
-    )
+    fmt('{}_({})^({})', {
+      f(function(_, parent, _)
+        return parent.captures[1]
+      end),
+      f(function(_, parent, _)
+        return parent.captures[2]
+      end),
+      i(1),
+    })
   ),
 
   s(
     {
-      trig        = '(%a+[)}]*)([0-9])',
+      trig = '(%a+[)}]*)([0-9])',
       snippetType = 'autosnippet',
-      dscr        = 'Automatically transforms digits after variables into indices.',
-      trigEngine  = 'pattern',
-      condition   = isInsideMath
+      dscr = 'Automatically transforms digits after variables into indices.',
+      trigEngine = 'pattern',
+      condition = isInsideMath,
     },
-    fmt(
-      "{}_({}{})",
-      {
-        f(function(_, parent, _) return parent.captures[1] end),
-        f(function(_, parent, _) return parent.captures[2] end),
-        i(1)
-      }
-    )
+    fmt('{}_({}{})', {
+      f(function(_, parent, _)
+        return parent.captures[1]
+      end),
+      f(function(_, parent, _)
+        return parent.captures[2]
+      end),
+      i(1),
+    })
   ),
 
   -- s(

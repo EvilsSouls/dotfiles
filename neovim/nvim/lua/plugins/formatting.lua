@@ -3,17 +3,29 @@ return {
   lazy = true,
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
+  -- Somehow freezes neovim when lazy loading is enabled
   keys = {
     {
       -- Customize or remove this keymap to your liking
-      '<C-f>',
+      '<C-0>',
       function()
-        require('conform').format { async = true }
+        local callback = nil
+        if vim.api.nvim_get_mode().mode == 'i' then
+          local normal_key = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
+          vim.api.nvim_feedkeys(normal_key, 'n', false)
+
+          callback = function()
+            vim.api.nvim_feedkeys('a', 'n', false)
+          end
+        end
+
+        require('conform').format({ async = true }, callback)
       end,
-      mode = '',
+      mode = { 'i', 'n' },
       desc = 'Format buffer',
     },
   },
+
   -- This will provide type hinting with LuaLS
   ---@module "conform"
   ---@type conform.setupOpts
@@ -40,8 +52,8 @@ return {
       },
     },
   },
+
   init = function()
-    -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
   end,
 }

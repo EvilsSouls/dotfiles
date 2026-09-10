@@ -9,7 +9,25 @@ settings:
   auto_save.session:
     global: true
   bindings.commands:
-    global: null
+    global:
+      insert:
+        <Alt+Shift+u>: spawn --userscript qute-keepassxc --key evilssouls@protonmail.com
+        <Ctrl+h>: fake-key <right>
+        <Ctrl+j>: fake-key <down>
+        <Ctrl+k>: fake-key <up>
+        <Ctrl+l>: fake-key <left>
+      normal:
+        ',M': hint links spawn mpv {hint-url}
+        ',m': spawn mpv {url}
+        <Alt+Shift+a>: config-cycle -t colors.webpage.darkmode.enabled "true" "false"
+        <Alt+Shift+j>: tab-move +
+        <Alt+Shift+k>: tab-move -
+        <Ctrl+a>: config-cycle colors.webpage.preferred_color_scheme "light" "dark"
+        pw: spawn --userscript qute-keepassxc --key evilssouls@protonmail.com
+      prompt:
+        <Ctrl+h>: rl-unix-filename-rubout
+        <Ctrl+j>: prompt-item-focus next
+        <Ctrl+k>: prompt-item-focus prev
   colors.tooltip.bg:
     global: null
   colors.tooltip.fg:
@@ -19,7 +37,7 @@ settings:
   colors.webpage.darkmode.contrast:
     global: 0.1
   colors.webpage.preferred_color_scheme:
-    global: dark
+    global: light
   content.autoplay:
     global: false
   content.blocking.adblock.lists:

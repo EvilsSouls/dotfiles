@@ -8,10 +8,10 @@ This is the todo for my neovim configuration.
 - [x] Figure out how completions should be triggered (Tab, Return, etc.)
 - [x] Finish Completion sources
 - [ ] Make Markdown easier to type (lists, checklists, etc.)
-- [ ] Figure out LuaSnip and make LuaSnippets for latex in Markdown
+- [x] Figure out LuaSnip and make LuaSnippets for latex in Markdown
 - [x] Figure out why obsidian.nvim and obsidian-bridge isn't working
 - [ ] Update LSP Capabilities and Keybinds (also TreeSitter)
-- [ ] Add Which-Key configuration
+- [x] Add Which-Key configuration
 - [ ] Change lualine to be more minimal when screen size is limited
-- [ ] Nvim Tree
+- [x] Nvim Tree
 - [ ] Trouble Plugin

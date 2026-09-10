@@ -8,7 +8,7 @@ return {
       'L3MON4D3/LuaSnip',
       'nvim-tree/nvim-web-devicons',
       -- 'MahanRahmati/blink-nerdfont.nvim', -- Does not fully work with v2 apparently
-      'becknik/blink-cmp-luasnip-choice'
+      'becknik/blink-cmp-luasnip-choice',
     },
     build = function()
       -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
@@ -23,6 +23,7 @@ return {
 
       sources = {
         default = { 'choice', 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        -- default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
           lazydev = {
             name = 'LazyDev',
@@ -50,7 +51,7 @@ return {
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
       -- You may use a lua implementation instead by using `implementation = "lua"`
       -- See the fuzzy documentation for more information
-      fuzzy = { implementation = "rust" },
+      fuzzy = { implementation = 'rust' },
 
       -- Configure luasnip as snippet engine to use with blink.cmp
       snippets = { preset = 'luasnip' },
@@ -59,8 +60,8 @@ return {
       signature = {
         enabled = true,
         window = {
-          show_documentation = true
-        }
+          show_documentation = true,
+        },
       },
 
       ---@todo Configure completions to more easily separate different kinds of sources, different columns, etc.
@@ -88,8 +89,8 @@ return {
 
           Event = '',
           Operator = '󱁤',
-          TypeParameter = '󰫈'
-        }
+          TypeParameter = '󰫈',
+        },
       },
 
       -- Configure Completion Menu
@@ -99,7 +100,7 @@ return {
         -- },
 
         documentation = {
-          auto_show = true
+          auto_show = true,
         },
 
         -- Use lsp-kind and nvim-web-devicons as icons
@@ -109,14 +110,14 @@ return {
               kind_icon = {
                 text = function(ctx)
                   local icon = ctx.kind_icon
-                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                    local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+                  if vim.tbl_contains({ 'Path' }, ctx.source_name) then
+                    local dev_icon, _ = require('nvim-web-devicons').get_icon(ctx.label)
                     if dev_icon then
                       icon = dev_icon
                     end
                   end
 
-                  return icon .. " " .. ctx.icon_gap
+                  return icon .. ' ' .. ctx.icon_gap
                 end,
 
                 ---@todo Actually implement colors correctly, so that different sources / different kinds are highlighted correctly
@@ -125,8 +126,8 @@ return {
                 -- keep the highlight groups in sync with the icons.
                 highlight = function(ctx)
                   local hl = ctx.kind_hl
-                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                    local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+                  if vim.tbl_contains({ 'Path' }, ctx.source_name) then
+                    local dev_icon, dev_hl = require('nvim-web-devicons').get_icon(ctx.label)
                     if dev_icon then
                       hl = dev_hl
                     end
@@ -138,35 +139,35 @@ return {
               source_name = {
                 text = function(ctx)
                   local source_abbreviations = {
-                    Snippets = "S",
-                    LSP = "L",
-                    Path = "P",
-                    Buffer = "B"
+                    Snippets = 'S',
+                    LSP = 'L',
+                    Path = 'P',
+                    Buffer = 'B',
                   }
 
                   local name = source_abbreviations[ctx.source_name] or ctx.source_name
 
-                  return "[" .. name .. "]"
-                end
-              }
+                  return '[' .. name .. ']'
+                end,
+              },
             },
 
             columns = {
-              { "kind_icon" },
-              { "label", "label_description", gap = 1},
-              { "source_name" },
-            }
-          }
-        }
+              { 'kind_icon' },
+              { 'label', 'label_description', gap = 1 },
+              { 'source_name' },
+            },
+          },
+        },
       },
     },
 
     config = function(plugin, opts)
       require(plugin.name).setup(opts)
 
-      vim.api.nvim_set_hl(0, "BlinkCmpSource", {link = 'Comment'})
-      vim.api.nvim_set_hl(0, "BlinkCmpKindText", {link = 'OkMsg'})
-    end
+      vim.api.nvim_set_hl(0, 'BlinkCmpSource', { link = 'Comment' })
+      vim.api.nvim_set_hl(0, 'BlinkCmpKindText', { link = 'OkMsg' })
+    end,
   },
 
   --[[ {

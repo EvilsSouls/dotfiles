@@ -13,6 +13,62 @@ unbind --mode=ex <C-a>
 " Allow Ctrl-c to copy in the commandline
 unbind --mode=ex <C-c>
 
+" Swap ; and : around
+bind --mode=normal ; fillcmdline_notrail
+unbind --mode=normal :
+bind --mode=normal :; hint -; *
+bind --mode=normal :: hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet(\"xdotool mousemove --sync \" + window.devicePixelRatio * pos.x + \" \" + window.devicePixelRatio * pos.y)}
+bind --mode=normal :# hint -#
+bind --mode=normal :a hint -a
+bind --mode=normal :A hint -A
+bind --mode=normal :b hint -b
+bind --mode=normal :c hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet(\"xdotool mousemove --sync \" + window.devicePixelRatio * pos.x + \" \" + window.devicePixelRatio * pos.y + \"; xdotool click 3\")}
+bind --mode=normal :d hint -W tabopen --discard
+bind --mode=normal :g; hint -q;
+bind --mode=normal :g# hint -q#
+bind --mode=normal :ga hint -qa
+bind --mode=normal :gA hint -qA
+bind --mode=normal :gb hint -qb
+bind --mode=normal :gd hint -qW tabopen --discard
+bind --mode=normal :gf hint -q
+bind --mode=normal :gF hint -qb
+bind --mode=normal :gi hint -qi
+bind --mode=normal :gI hint -qI
+bind --mode=normal :gk hint -qk
+bind --mode=normal :gp hint -qp
+bind --mode=normal :gP hint -qP
+bind --mode=normal :gr hint -qr
+bind --mode=normal :gs hint -qs
+bind --mode=normal :gS hint -qS
+bind --mode=normal :gv hint -qW mpvsafe
+bind --mode=normal :gw hint -qw
+bind --mode=normal :gy hint -qy
+bind --mode=normal :h hint -h
+bind --mode=normal :i hint -i
+bind --mode=normal :I hint -I
+bind --mode=normal :k hint -k
+bind --mode=normal :K hint -K
+bind --mode=normal :m hint -JFc img i => tri.excmds.open('https://lens.google.com/uploadbyurl?url='+i.src)
+bind --mode=normal :M hint -JFc img i => tri.excmds.tabopen('https://lens.google.com/uploadbyurl?url='+i.src)
+bind --mode=normal :o hint
+bind --mode=normal :O hint -W fillcmdline_notrail open 
+bind --mode=normal :p hint -p
+bind --mode=normal :P hint -P
+bind --mode=normal :r hint -r
+bind --mode=normal :s hint -s
+bind --mode=normal :S hint -S
+bind --mode=normal :t hint -W tabopen
+bind --mode=normal :T hint -W fillcmdline_notrail tabopen 
+bind --mode=normal :v hint -W mpvsafe
+bind --mode=normal :V hint -V
+bind --mode=normal :w hint -w
+bind --mode=normal :W hint -W fillcmdline_notrail winopen 
+bind --mode=normal :x hint -F e => { const pos = tri.dom.getAbsolutecentre(e); tri.excmds.exclaim_quiet(\"xdotool mousemove --sync \" + window.devicePixelRatio * pos.x + \" \" + window.devicePixelRatio * pos.y + \"; xdotool click 1\")}
+bind --mode=normal :X hint -F e => { const pos = tri.dom.getAbsolutecentre(e); tri.excmds.exclaim_quiet(\"xdotool mousemove --sync \" + window.devicePixelRatio * pos.x + \" \" + window.devicePixelRatio * pos.y + \"; xdotool keydown ctrl+shift; xdotool click 1; xdotool keyup ctrl+shift\")}
+bind --mode=normal :y hint -y
+bind --mode=normal :Y hint -cF img i => tri.excmds.yankimage(tri.urlutils.getAbsoluteURL(i.src))
+bind --mode=normal :z hint -z
+
 " Reduce hintdelay
 set hintdelay 100
 
