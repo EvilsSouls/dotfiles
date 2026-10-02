@@ -1,6 +1,6 @@
 -- A wrapper function is required to ignore the passed arguments
 local function isInsideMarkup()
-  require('utils.typst').isInsideMarkup()
+  return require('utils.typst').isInsideMarkup()
 end
 
 return {

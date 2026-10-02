@@ -1,6 +1,6 @@
 -- A wrapper function is required to ignore the passed arguments
 local function isInsideMath()
-  require('utils.typst').isInsideMath()
+  return require('utils.typst').isInsideMath()
 end
 
 return {
