@@ -1,12 +1,12 @@
-local MODE_INDICATORS = {
+local M = {}
+
+M.MODE_INDICATORS = {
   'content',
   'string',
   'code',
   'math',
   'raw_span',
 }
-
-local M = {}
 
 --- See https://github.com/tree-sitter/tree-sitter/discussions/3716
 --- Somewhat plagiarised from https://github.com/nvim-treesitter/nvim-treesitter-context/blob/master/lua/treesitter-context/context.lua#L12
@@ -56,30 +56,46 @@ local function get_ancestors_curr_node(bufnr, pos, target_node)
   return ret
 end
 
----@param mode 'content' | 'string' | 'code' | 'math'
+---@param ancestor_type string
+---@param blacklist string[]? A list of treesitter nodes that - when encountered as an ancestor - automatically cause the tree recurser to exit out returning nil
 ---@param bufnr integer? If equal to nil or zero the current buffer is searched
 ---@param pos [integer, integer]?
----@param ts_node TSNode?
----@return boolean
-local function isInsideMode(mode, bufnr, pos, ts_node)
+---@param ts_node TSNode? The treesitter node to find the ancestors of
+---@return boolean? If equal to nil the function exited out early due to it hitting a blacklist item
+function M.hasAncestor(ancestor_type, blacklist, bufnr, pos, ts_node)
   local ancestors = get_ancestors_curr_node(bufnr, pos, ts_node)
 
   for i = #ancestors, 1, -1 do
     --- @diagnostic disable-next-line:need-check-nil
     local node_type = ancestors[i]:type()
 
-    if node_type == mode then
+    if node_type == ancestor_type then
       return true
-    elseif require('utils.utils').array_includes(MODE_INDICATORS, node_type) then
-      return false
+    elseif blacklist and require('utils.utils').array_includes(blacklist, node_type) then
+      return nil
     end
   end
 
-  if not mode == 'content' then
-    return false
-  else
-    return true
+  return false
+end
+
+---@param mode 'content' | 'string' | 'code' | 'math'
+---@param bufnr integer? If equal to nil or zero the current buffer is searched
+---@param pos [integer, integer]?
+---@param ts_node TSNode?
+---@return boolean
+local function isInsideMode(mode, bufnr, pos, ts_node)
+  local result = M.hasAncestor(mode, M.MODE_INDICATORS, bufnr, pos, ts_node)
+
+  if result == false and mode == 'content' then
+    result = true
   end
+
+  if result == nil then
+    result = false
+  end
+
+  return result
 end
 
 ---Check whether Treesitter Node is inside a Math node

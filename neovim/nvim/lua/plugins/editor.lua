@@ -53,11 +53,12 @@ return {
       local Rule = require('nvim-autopairs.rule')
       local cond = require('nvim-autopairs.conds')
       local ts_conds = require('nvim-autopairs.ts-conds')
+      local typst_utils = require('utils.typst')
 
       ---@module 'nvim-autopairs'
       ---@param opts CondOpts
       local function isInsideMarkup(opts)
-        return require('utils.typst').isInsideMarkup(
+        return typst_utils.isInsideMarkup(
           opts.bufnr,
           { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
         )
@@ -66,7 +67,7 @@ return {
       ---@module 'nvim-autopairs'
       ---@param opts CondOpts
       local function isInsideMath(opts)
-        return require('utils.typst').isInsideMath(
+        return typst_utils.isInsideMath(
           opts.bufnr,
           { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
         )
@@ -75,7 +76,29 @@ return {
       ---@module 'nvim-autopairs'
       ---@param opts CondOpts
       local function isInsideCode(opts)
-        return require('utils.typst').isInsideCode(
+        return typst_utils.isInsideCode(
+          opts.bufnr,
+          { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
+        )
+      end
+
+      ---@module 'nvim-autopairs'
+      ---@param opts CondOpts
+      local function isInsideEmph(opts)
+        return typst_utils.hasAncestor(
+          'emph',
+          typst_utils.MODE_INDICATORS,
+          opts.bufnr,
+          { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
+        )
+      end
+
+      ---@module 'nvim-autopairs'
+      ---@param opts CondOpts
+      local function isInsideStrong(opts)
+        return typst_utils.hasAncestor(
+          'strong',
+          typst_utils.MODE_INDICATORS,
           opts.bufnr,
           { vim.api.nvim_win_get_cursor(0)[1] - 1, math.max(0, opts.col - 2) }
         )
@@ -89,9 +112,9 @@ return {
           :with_move(ts_conds.is_ts_node('comment'))
           :with_cr(ts_conds.is_ts_node('comment')),
 
-        Rule('*', '*', 'typst'):with_pair(isInsideMarkup):with_move(ts_conds.is_ts_node('strong')),
+        Rule('*', '*', 'typst'):with_pair(isInsideMarkup):with_move(isInsideStrong),
 
-        Rule('_', '_', 'typst'):with_pair(isInsideMarkup):with_move(ts_conds.is_ts_node('emph')),
+        Rule('_', '_', 'typst'):with_pair(isInsideMarkup):with_move(isInsideEmph),
 
         Rule('<', '>', 'typst'):with_pair(function(opts)
           return isInsideMarkup(opts) or isInsideCode(opts)

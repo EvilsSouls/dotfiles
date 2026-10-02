@@ -3,6 +3,7 @@ return {
   'L3MON4D3/LuaSnip',
   -- enabled = false,
   -- version = 'v2.*',
+  lazy = false,
   run = 'make install_jsregexp',
 
   dependencies = {

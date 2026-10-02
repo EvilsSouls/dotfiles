@@ -19,7 +19,7 @@ return {
     opts = {
       ensure_installed = { 'clangd', 'lua_ls', 'rust_analyzer', 'fish_lsp', 'basedpyright', 'vtsls', 'tinymist' },
       automatic_enable = {
-        exclude = { 'rust_analyzer', 'ruff' },
+        exclude = { 'rust_analyzer', 'ruff', 'rumdl' },
       },
     },
     dependencies = {

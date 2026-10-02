@@ -3,19 +3,21 @@ return {
   lazy = true,
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
-  -- Somehow freezes neovim when lazy loading is enabled
   keys = {
     {
       -- Customize or remove this keymap to your liking
       '<C-0>',
       function()
         local callback = nil
+        -- local prev_lines = vim.api.nvim_buf_line_count(0)
         if vim.api.nvim_get_mode().mode == 'i' then
           local normal_key = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
           vim.api.nvim_feedkeys(normal_key, 'n', false)
 
           callback = function()
             vim.api.nvim_feedkeys('a', 'n', false)
+            -- local new_lines = vim.api.nvim_buf_line_count(0)
+            -- vim.api.nvim_win_set_cursor
           end
         end
 
@@ -35,7 +37,9 @@ return {
       lua = { 'stylua' },
       python = { 'ruff_format' },
       javascript = { 'prettier' },
+      yaml = { 'prettier' },
       html = { 'prettier' },
+      markdown = { 'rumdl' },
     },
     -- Set default options
     default_format_opts = {

@@ -59,15 +59,28 @@ vim.keymap.set({ 'n' }, '<C-l>', '<C-w>l')
 -- File Keybinds
 vim.keymap.set('', '<leader>fs', function()
   vim.cmd('w')
-end, { desc = 'Save File' })
+end, { desc = 'write File' })
+
 vim.keymap.set('', '<leader>fq', function()
   vim.cmd('q')
-end, { desc = 'Close File' })
+end, { desc = 'close File' })
+
+vim.keymap.set('', '<leader>fw', function()
+  vim.cmd('wq')
+end, { desc = 'write and close file' })
+
+vim.keymap.set('', '<leader>fQ', function()
+  vim.cmd('q!')
+end, { desc = 'close file w/o confirmation' })
 
 -- Editor Keybinds
 vim.keymap.set('', '<leader>eq', function()
   vim.cmd('qa')
 end, { desc = 'Exit Neovim' })
+
+vim.keymap.set('', '<leader>eQ', function()
+  vim.cmd('qa!')
+end, { desc = 'exit neovim w/o confirmation' })
 
 -- Session Keybinds
 -- Loosely copied from https://www.reddit.com/r/neovim/comments/xazxxe/help_savingcreating_file/inwtkis?utm_medium=android_app&utm_source=share&context=3
