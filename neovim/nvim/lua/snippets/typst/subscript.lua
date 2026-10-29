@@ -3,6 +3,10 @@ local function isInsideMath()
   return require('utils.typst').isInsideMath()
 end
 
+local function isInsideError()
+  return require('utils.typst').hasAncestor('ERROR')
+end
+
 return {
   s(
     {
@@ -38,7 +42,24 @@ return {
       f(function(_, parent, _)
         return parent.captures[2]
       end),
-      i(1),
+      i(0),
+    })
+  ),
+
+  s(
+    {
+      trig = '(%a+[)}]*)"',
+      snippetType = 'autosnippet',
+      dscr = 'Automatically transform a quote directly succeeding a variable to an index.',
+      trigEngine = 'pattern',
+      condition = isInsideError,
+    },
+    -- Do not include ending quotation mark, since that is added due to nvim-autopairs
+    fmt('{}_"{}', {
+      f(function(_, parent, _)
+        return parent.captures[1]
+      end),
+      i(0),
     })
   ),
 }

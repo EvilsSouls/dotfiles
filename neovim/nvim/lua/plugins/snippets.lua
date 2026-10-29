@@ -21,7 +21,7 @@ return {
       update_events = 'TextChanged,TextChangedI',
 
       -- Use Tab to trigger visual selection
-      store_selection_keys = '<Tab>',
+      cut_selection_keys = '<Tab>',
     }
 
     --[[ vim.keymap.set({ "i" }, "<C-y>", function() ls.expand() end, { silent = true })
@@ -70,4 +70,50 @@ return {
       desc = 'Edit Snippets',
     },
   },
+
+  init = function()
+    local function trigger_visual_snippet(snippet)
+      local cut_keys = vim.api.nvim_replace_termcodes(require('luasnip.util.select').cut_keys, true, false, true)
+      vim.api.nvim_feedkeys(cut_keys, 'm', false)
+
+      -- For some reason I can't explain, this function must be deferred again
+      vim.defer_fn(function()
+        require('luasnip').snip_expand(snippet)
+        local esc_insert = vim.api.nvim_replace_termcodes('<esc>', true, false, true)
+        vim.api.nvim_feedkeys(esc_insert, 'm', false)
+      end, 0)
+    end
+
+    local snippets = require('snippets.typst.utils.visual_snippets')
+
+    vim.api.nvim_create_autocmd('FileType', {
+      desc = 'Set FileType specific keybindings for easily triggering visual snippets as a motion',
+      pattern = 'typst',
+      callback = function(_)
+        vim.keymap.set('v', 'mc', function()
+          trigger_visual_snippet(snippets.cancel_snippet)
+        end)
+
+        vim.keymap.set('v', 'md', function()
+          trigger_visual_snippet(snippets.underbrace_snippet)
+        end)
+
+        vim.keymap.set('v', 'mo', function()
+          trigger_visual_snippet(snippets.overbrace_snippet)
+        end)
+
+        vim.keymap.set('v', 'ml', function()
+          trigger_visual_snippet(snippets.double_underline_snippet)
+        end)
+
+        vim.keymap.set('v', 'ms', function()
+          trigger_visual_snippet(snippets.sqrt)
+        end)
+
+        vim.keymap.set('v', 'g/', function()
+          trigger_visual_snippet(snippets.frac)
+        end)
+      end,
+    })
+  end,
 }

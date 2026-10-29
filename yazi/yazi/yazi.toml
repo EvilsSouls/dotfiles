@@ -15,28 +15,17 @@ append_rules = [
   { url = "*.md", use = "diff"}
 ]
 
-# Line Mode for Git Status of Files
-[[plugin.prepend_fetchers]]
-group = "git"
-url   = "*"
-run   = "git"
-
-[[plugin.prepend_fetchers]]
-group = "git"
-url   = "*/"
-run   = "git"
-
 # Add a preview for archives
 [[plugin.prepend_previewers]]
 mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
 run  = "ouch --show-file-icons --archive-icon=' '"
 
-# Spotters
-[plugin]
-prepend_spotters = [
-  { mime = "audio/*", run = "spot-audio" },
-  { mime = "video/*", run = "spot-video" },
-  { mime = "image/*", run = "spot-image" },
-  { url = "*/", run = "spot" },
-  { url = "*", run = "spot" },
-]
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"

@@ -7,7 +7,7 @@ if status is-interactive
     # --- starship ---
     starship init fish | source
     function starship_transient_prompt_func
-      starship module character
+        starship module character
     end
     enable_transience
 end
@@ -18,9 +18,9 @@ set PATH $PATH /home/evilssouls/.local/bin
 set PATH $PATH /home/evilssouls/.config/emacs/bin/
 
 function fish_user_key_bindings
-  bind --mode insert alt-v fish_clipboard_paste
-  bind --mode normal alt-v fish_clipboard_paste
-  bind --mode visual alt-c fish_clipboard_copy
+    bind --mode insert alt-v fish_clipboard_paste
+    bind --mode normal alt-v fish_clipboard_paste
+    bind --mode visual alt-c fish_clipboard_copy
 end
 
 # --- fzf and fzf fish plugins ---
@@ -35,7 +35,7 @@ set -gx EZA_ICONS_AUTO
 
 # --- nvim ---
 set -gx EDITOR nvim # Set default editor to Neovim
-set -gx OBSIDIAN_REST_API_KEY "04142d36d995d004c666b4f621c8f69ca1bb15c653f60de04ed36bc47f11dcba"
+set -gx OBSIDIAN_REST_API_KEY 04142d36d995d004c666b4f621c8f69ca1bb15c653f60de04ed36bc47f11dcba
 
 # --- bat and bat-extras ---
 batman --export-env | source
@@ -43,7 +43,7 @@ set -gx BATDIFF_USE_DELTA true
 bat --completion fish | source
 
 # --- thefuck ---
-set -x THEFUCK_OVERRIDDEN_ALIASES 'ls'
+set -x THEFUCK_OVERRIDDEN_ALIASES ls
 
 # --- zoxide ---
 zoxide init --cmd cd fish | source
@@ -54,4 +54,8 @@ gtrash completion fish | source
 # --- ov pager ---
 set -gx PAGER ov
 set -gx BAT_PAGER "ov -F -H3"
-ov --completion fish > ~/.config/fish/completions/ov.fish
+ov --completion fish >~/.config/fish/completions/ov.fish
+
+# Make zathura not use hardware acceleration, as that for some reason slows it
+# down
+# alias zathura="GSK_RENDERER=cairo /usr/bin/zathura"

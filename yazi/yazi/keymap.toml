@@ -4,6 +4,16 @@ run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
+on   = [ "g", "v" ]
+run  = "plugin gridview"
+desc = "Grid view"
+
+[[mgr.prepend_keymap]]
+on = [ ".", "s" ]
+run  = "plugin what-size"
+desc = "Calc size of selection or cwd" 
+
+[[mgr.prepend_keymap]]
 on   = "<A-d>"
 run  = "plugin delta"
 desc = "View Diff of selected and hovered file"
@@ -24,11 +34,6 @@ run  = "plugin confirm-quit"
 desc = "Confirm quit if multiple tabs are open"
 
 [[mgr.prepend_keymap]]
-on   = "<C-n>"
-run  = "shell -- dragon-drop -x -i -T %h"
-desc = "Drag and Drop Support"
-
-[[mgr.prepend_keymap]]
 on   = "+"
 run  = "plugin zoom 1"
 desc = "Zoom in hovered file"
@@ -37,11 +42,6 @@ desc = "Zoom in hovered file"
 on   = "-"
 run  = "plugin zoom -1"
 desc = "Zoom out hovered file"
-
-[[mgr.prepend_keymap]]
-on   = "f"
-run  = "plugin smart-filter"
-desc = "Smart filter"
 
 [[mgr.prepend_keymap]]
 on   = [ "c", "m" ]
@@ -114,3 +114,49 @@ desc = "Restore last deleted files/folders"
 on   = "U"
 run  = "plugin restore -- --interactive"
 desc = "Restore deleted files/folders (Interactive)"
+
+# Relative Motions
+[[mgr.prepend_keymap]]
+on = [ "1" ]
+run = "plugin relative-motions 1"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "2" ]
+run = "plugin relative-motions 2"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "3" ]
+run = "plugin relative-motions 3"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "4" ]
+run = "plugin relative-motions 4"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "5" ]
+run = "plugin relative-motions 5"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "6" ]
+run = "plugin relative-motions 6"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "7" ]
+run = "plugin relative-motions 7"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "8" ]
+run = "plugin relative-motions 8"
+desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = [ "9" ]
+run = "plugin relative-motions 9"
+desc = "Move in relative steps"
